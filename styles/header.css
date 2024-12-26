@@ -15,9 +15,9 @@
     position: relative;
 }
 
-.container {
-    display:flex ;
-    align-items: center;
+.containers {
+    display: flex !important;
+    align-items: center !important;
 }
 
 .container__imagem {
@@ -29,13 +29,33 @@
     position: absolute;
     top: 100%;
     width: 45vw;
+    z-index:999;
+    padding: 0;
+}
+
+.lista-menu-admin {
+    display: none;
+    position: absolute;
+    top: 100%;
+    width: 45vw;
+    z-index:999;
+    padding: 0;
+}
+
+.menu-admin{
+    padding: 0;
 }
 
 .container__botao:checked~.lista-menu {
     display: block;
 }
 
-.lista-menu__titulo,.lista-menu__item  {
+.container__botao:checked~.lista-menu-admin {
+    display: block;
+}
+
+.lista-menu__titulo,
+.lista-menu__item {
     padding: 1em;
     background-color: var(--branco);
 }
@@ -57,7 +77,7 @@
     display: none;
 }
 
-.container__titulo{
+.container__titulo {
     display: none;
 }
 
@@ -65,15 +85,15 @@
     display: none;
 }
 
-.container__texto{
+.container__texto {
     display: none;
 }
 
-.container__botao:checked~ .container__rotulo> .cabecalho__menu-hamburguer{
+.container__botao:checked~.container__rotulo>.cabecalho__menu-hamburguer {
     background-image: url("../Icons/Menu\ Aberto.svg");
 }
 
-.container__botao:checked ~.container__rotulo {
+.container__botao:checked~.container__rotulo {
     background: var(--azul-degrade);
 }
 
@@ -101,7 +121,7 @@
     .opcoes__item {
         padding: 0 1em;
         text-transform: uppercase;
-        
+
     }
 
     .opcoes__link {
@@ -135,6 +155,34 @@
         padding: 2em 1em;
     }
 
+
+
+    .opcoes__botao__admin {
+        display: none;
+    }
+
+    .opcoes__botao__admin:checked~.lista-menu-admin {
+        display: block;
+        width: auto;
+    }
+
+    .opcoes__botao__admin:checked~.opcoes__rotulo__admin>.opcoes__item__admin {
+        background: var(--azul-degrade);
+        color: var(--branco);
+    }
+
+    .opcoes__item__admin {
+        padding: 0 1em;
+        text-transform: uppercase;
+
+    }
+
+    .opcoes__item__admin {
+        padding: 2em 1em;
+    }
+
+
+
     .lista-menu__item:hover {
         background: var(--azul-degrade);
     }
@@ -149,10 +197,10 @@
 
 @media screen and (min-width:1728px) {
     .container__link {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        color: var(--preto);
+        display: flex !important;
+        align-items: center !important;
+        text-decoration: none !important;
+        color: var(--preto) !important;
     }
 
     .cabecalho {
@@ -160,7 +208,7 @@
     }
 
     .opcoes {
-        margin-right: auto;
+        margin-right: auto;        
     }
 
     .container__texto {

@@ -5,7 +5,7 @@
 @import url("styles/contato.css");
 @import url("styles/rodape.css");
 
-:root{
+:root {
     --cor-de-fundo: #EBECEE;
     --branco: #FFFFFF;
     --laranja: #EB9B00;
@@ -25,3 +25,6 @@ body {
     font-weight: 400;
 }
 
+.mouseon {
+    cursor: pointer;
+}
