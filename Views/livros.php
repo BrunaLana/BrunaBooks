@@ -1,5 +1,15 @@
 <?php
 include('../controllers/livrosController.php');
+
+if (!isset($_SESSION['cart'])) {
+	$_SESSION['cart'] = array();
+}
+if (isset($_GET['addCart'])) {
+	$_SESSION['carrinho'][] = $_GET['addCart'];
+	header('location: ' . $_SERVER['PHP_SELF'] . '?' . SID);
+	exit();
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -92,14 +102,21 @@ include('../controllers/livrosController.php');
             $books = getAll();
             while ($book = $books->fetch_assoc()):
                 echo  '<div class="col">
-                        <div class="card">
-                            <img src="data:image/jpeg;base64,' . $book['productImg'] . '" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">' . $book['productName'] . '</h5>
-                                <p class="card-text">' . $book['productDesc'] . '</p>
+                            <div class="card">
+                                <img src="data:image/jpeg;base64,' . $book['productImg'] . '" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">' . $book['productName'] . '</h5>
+                                    <p class="card-text">' . $book['productDesc'] . '</p>
+                                </div>
+                                <div class="card-footer">
+                                    <b><small class="text-muted">' . $book['productPrice'] . '€</small></b>
+                                    <span style="float:right;">Adicionar a sacola 
+                                    <a href="' . $_SERVER['PHP_SELF'] . '?addCart=' . $book['productId'] . '" class="botao">
+                                    <img src="../Icons/add.svg" alt="Carrinho de compra" class="container__imagem" width="50px" height="50px"></span>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </div>';
+                        </div>';
             endwhile;
             ?>
         </div>
