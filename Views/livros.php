@@ -5,7 +5,7 @@ if (!isset($_SESSION['cart'])) {
 	$_SESSION['cart'] = array();
 }
 if (isset($_GET['addCart'])) {
-	$_SESSION['carrinho'][] = $_GET['addCart'];
+	$_SESSION['cart'][] = $_GET['addCart'];
 	header('location: ' . $_SERVER['PHP_SELF'] . '?' . SID);
 	exit();
 }
@@ -86,7 +86,13 @@ if (isset($_GET['addCart'])) {
         </ul>
         <div class="containers">
             <a href="#" class="container__link">
+               <div> 
                 <img src="../Icons/Compras.svg" alt="Carrinho de compra" class="container__imagem">
+                    <?php 
+                        if (isset($_SESSION['cart']) && count($_SESSION['cart'])>0 )
+                            echo '<span class="badge badge-warning" id="lblCartCount"> '. count($_SESSION['cart']) .' </span>'; 
+                    ?>
+               </div>
                 <p class="container__texto">Minha sacola</p>
             </a>
             <a href="#" class="container__link">
