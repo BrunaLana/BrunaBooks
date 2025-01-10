@@ -1,0 +1,100 @@
+h1.cadastro_title{
+    text-align: center;
+    margin: 20px;
+    
+}
+
+section.cadastro_Livros{
+    margin-left: 20px;
+}
+
+input#title, textarea#description{
+    width: 90%;
+}
+
+textarea#description{
+    height: 120px;
+}
+
+input.botao_create{
+    background-color: var(--laranja);
+    color: var(--branco);
+    border: none;
+    padding: 10px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+section.listagemLivros{
+    display: none;
+}
+
+@media screen and (min-width:1024px) {
+
+   
+
+ section.cadastro_Livros{
+     margin-left: 0px;
+     display: flex;
+     justify-content: center;
+ }
+
+
+
+form{
+    width: 50%;
+    background-color: var(--branco);
+    padding: 50px;
+    margin-bottom: 40px;
+    border-radius:30px;   
+
+    
+}
+
+input#title, textarea#description{
+    width: 100%;
+}
+
+label{
+    font-size: 20px;
+}
+
+
+
+a.opcoes__link{
+    font-size: 20px;
+   
+    
+}
+
+li.opcoes__item{
+    padding: 40px 20px;
+    color:var(--preto);
+}
+}
+
+@media screen and (min-width:1728px){
+
+       section.listagemLivros{
+        display: block;
+        width: 50%;
+        margin-left: 5%;
+        background-color: var(--branco);
+        padding: 50px;
+        margin-bottom: 40px;
+        border-radius:30px;
+       
+       
+    }
+
+    td,th{
+        border: solid 1px black;
+        padding: 10px;
+    }
+
+
+
+}
+
+
+

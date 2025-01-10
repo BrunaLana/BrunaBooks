@@ -112,6 +112,7 @@ $conn = getDatabaseConnection();
                 <div class="swiper-button-next"></div>
 
             </div>
+            
             <div class="card">
                 <!--1° linha-->
                 <div class="card__descricao">

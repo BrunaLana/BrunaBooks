@@ -85,7 +85,7 @@ include('../Controllers/LivrosController.php');
 <hr />
 
 <body>
-    <h1>Cadastro de Livro</h1>
+    <h1 class="cadastro_title">Cadastro de Livro</h1>
     <section class="cadastro_Livros">
         <form action="../controllers/LivrosController.php" method="POST" enctype="multipart/form-data">
 
@@ -101,11 +101,11 @@ include('../Controllers/LivrosController.php');
             <label for="imagem">Imagem:</label>
             <input type="file" id="imagem" name="imagem" accept="image/*" required><br><br>
 
-            <input type="submit" value="Create Product">
+            <input type="submit" class="botao_create" value="Create Product">
 
         </form>
     </section>
-    <section class="listagem Livroes">
+    <section class="listagemLivros">
         <?php 
          $books = getAll();
          echo '<table>
@@ -132,13 +132,7 @@ include('../Controllers/LivrosController.php');
                </table>'
         ?>
     </section>
-    <section class="contato">
-        <div class="contato__descricao">
-            <h2 class="contato__titulo">Fique por dentro das novidades!</h2>
-            <p class="contato__texto">Atualizações de e-books, novos livros, promoções e outros.</p>
-        </div>
-        <input type="email" placeholder="Cadastre seu e-mail" class="contato__email">
-    </section>
+   
     <hr />
     <footer class="rodape">
         <h2 class="rodape__titulo">Grupo B.LANA</h2>

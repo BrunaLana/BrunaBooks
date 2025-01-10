@@ -41,6 +41,12 @@
 
 @media screen and (min-width:1728px) {
     .topicos {
-        padding: 3em 25vw;   
+       padding-top: 3em;
+       padding-bottom: 3em;
+    }
+
+    ul.topicos__lista {
+        display: flex;        
+        justify-content: center;
     }
 }
