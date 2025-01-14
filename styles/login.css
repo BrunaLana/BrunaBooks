@@ -1,0 +1,144 @@
+form.loginEntrar, div.loginRegistro{
+    padding: 20px;
+    background-color: var(--branco);
+    width: 80%;
+    margin: 5%;
+    border: none;
+    border-radius: 15px;
+}
+
+h2.loginTitulo{
+    text-align: center;
+    margin: 20px 0;
+    color: var(--laranja);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+p.loginTexto{
+    margin-bottom: 5px;
+}
+
+input.loginCampos{
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 90%;
+}
+
+button.loginBotao,a.loginBotao {
+    background-color: var(--laranja);
+    color: var(--branco);
+    font-family: var(--fonte-principal);
+    border: none;
+    border-radius: 19px;
+    padding: 8px 20px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+p#textoRegistro{
+    margin-bottom: 20px; 
+
+}
+
+div.loginRegistro{
+    padding-bottom: 30px;
+}
+
+@media screen and (min-width:1024px){
+.loginTotal,
+.registroTotal{
+    display: flex;
+    justify-content: center;
+}
+
+.login,
+.registro {
+    background: var(--branco);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 60px;      
+
+}
+
+.login{
+    width: 60%;
+
+}
+
+.registro{
+    width: 37%;
+}
+
+.loginDescricao,
+.registroDescricao{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+h2.loginTitulo{
+    color: var(--azul);
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    
+}
+
+.loginTexto,
+.registroTexto{
+    font-weight: 300;
+    margin: 8px 0;
+}
+
+.loginBotao,
+.registroBotao{
+    background-color: var(--laranja);
+    padding: 6px 22px;
+    color: var(--branco);
+    font-weight: 400;
+    border: none;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: var(--fonte-principal);
+    
+
+}
+
+.loginCampos,
+.registroCampos{
+    padding: 10px 20px 10px 10px;
+    margin-right: 350px;
+    width: 70%;
+    margin-bottom: 20px;
+}
+
+.loginRegistro{
+    margin-left: 80px;
+}
+
+#textoRegistro{
+    margin-bottom: 20px;
+}
+
+.mensagemErro{
+    font-size: 16px;
+}
+}
+
+@media screen and (min-width:1728px){
+
+    h2.loginTitulo{
+        color: var(--laranja);
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-transform: capitalize;
+        
+    }
+
+}
