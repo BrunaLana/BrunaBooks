@@ -1,10 +1,9 @@
 <?php
-$globalPDOConnection = null;
+
 
 function getDatabaseConnection()
-{
-    global $globalPDOConnection;
-    if ($globalPDOConnection === null) {        
+{    
+    $globalPDOConnection = null;
         $dbServername = "localhost";
         $dbUser = "root";
         $dbPassword = "123456*";
@@ -14,16 +13,15 @@ function getDatabaseConnection()
         } catch (\Throwable $e) {
             throw new Exception($e->getMessage());
         }
-    }    
     return $globalPDOConnection;
 }
 
-function closeConnection()
+function closeConnection($conn)
 {
-    global $globalPDOConnection;
+    $conn;
     try {
-        if ($globalPDOConnection != null) {
-            $globalPDOConnection->close();
+        if ($conn != null) {
+            $conn->close();
         }
         
     } catch (\Throwable $th) {
