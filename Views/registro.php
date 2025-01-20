@@ -1,6 +1,3 @@
-<?php
-include('../Controllers/CarrinhoController.php');
-?>
 <!DOCTYPE html>
 <html>
 
@@ -22,6 +19,7 @@ include('../Controllers/CarrinhoController.php');
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../styles/registro.css">
 </head>
 
 <body>
@@ -90,39 +88,37 @@ include('../Controllers/CarrinhoController.php');
             </a>
         </div>
     </header>
-    <hr />
+    <form method="POST" action="processamentoRegistro.php" class="registroTotal">
+        <div class="registro">
+            <div class="registroDescricao">
+                <div class="registroEntrar">
+                    <h2 class="registroTitulo">Crie uma conta com seu e-mail</h2>
 
-    <h1 class="carrinhoTitulo">Carrinho</h1>
-    <?php
-    $itemsQtd = array_count_values($_SESSION['cart']);
-    $items = GetItemsCarrinho();
-    foreach ($items as $item):
-    ?>
-        <div class="row mt-1 ps-4 pe-4">
-            <div class="col-sm-1 px-3 my-3 text-center d-flex align-items-center"><img src="<?php echo 'data:image/jpeg;base64,' . $item['productImg']; ?>" width="100" height="120" alt="..."></div>
-            <div class="col-sm-9 px-3 mb-1 d-flex align-items-center"><?php echo $item['productName']; ?></div>
-            <div class="col-sm-1 px-3 mb-1 text-end d-flex align-items-center"><?php echo $item['productPrice']; ?></div>
-            <div class="col-sm-1 px-3 mb-1 text-center d-flex align-items-center"><?php echo $itemsQtd[$item['productId']]; ?></div>
+                    <p class="registroTexto">Nome</p>
+                    <input type="text" class="registroCampos" name="nome" required>
+
+                    <p class="registroTexto">Apelido</p>
+                    <input type="text" class="registroCampos" name="apelido" required>
+
+                    <p class="registroTexto">Email</p>
+                    <input type="email" class="registroCampos" name="email" required>
+
+                    <p class="registroTexto">Nome de Usuário</p>
+                    <input type="text" class="registroCampos" name="userName" required>
+
+                    <p class="registroTexto">Senha</p>
+                    <input type="password"  class="registroCampos" name="senha" required><br>
+
+                    <button type="submit" class="registroBotao">Registrar</button>
+                     
+                    
+                </div> 
+                
+               
+            </div>
         </div>
-    <?php endforeach; ?>
-    <div class="row mt-1 d-flex justify-content-end pe-5 align-items-center">
-        <span class="text-end me-5 mb-3">Total: <?php echo CalculaTotal(); ?></span>
-    </div>
-    <div class="botoesCarrinho">
-        <button type="submit" class="botaoComprar">Finalizar Compra</button>
-        <button type="submit" class="botaoContinuar">Continuar Comprando</button>
-    </div>
-</body>
-<hr />
-<section class="contato">
-    <div class="contato__descricao">
-        <h2 class="contato__titulo">Fique por dentro das novidades!</h2>
-        <p class="contato__texto">Atualizações de e-books, novos livros, promoções e outros.</p>
-    </div>
-    <input type="email" placeholder="Cadastre seu e-mail" class="contato__email">
-</section>
-<hr />
-<footer class="rodape">
+    </form>
+    <footer class="rodape">
     <h2 class="rodape__titulo">Grupo B.LANA</h2>
 </footer>
 

@@ -6,6 +6,7 @@
 @import url("styles/rodape.css");
 @import url("styles/livroCreate.css");
 @import url("styles/login.css");
+//*@import url("styles/carrinho.css");*/
 
 :root {
     --cor-de-fundo: #EBECEE;
