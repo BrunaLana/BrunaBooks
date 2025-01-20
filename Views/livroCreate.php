@@ -87,7 +87,7 @@ include('../Controllers/LivrosController.php');
 <body>
     <h1 class="cadastro_title">Cadastro de Livro</h1>
     <section class="cadastro_Livros">
-        <form action="../controllers/LivrosController.php" method="POST" enctype="multipart/form-data">
+        <form class="form_livro_create" action="../controllers/LivrosController.php" method="POST" enctype="multipart/form-data">
 
             <label for="title">Título:</label>
             <input type="text" id="title" name="titulo" required><br><br>
