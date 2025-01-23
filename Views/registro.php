@@ -22,72 +22,8 @@
 </head>
 
 <body>
-    <header class="cabecalho">
-        <div class="containers">
-            <input type="checkbox" id="menu" class="container__botao">
-            <label for="menu" class="container__rotulo">
-                <span class="cabecalho__menu-hamburguer container__imagem"></span>
-            </label>
-            <ul class="lista-menu">
-                <li class="lista-menu__titulo">Livros</li>
-                <li class="lista-menu__item"><a href="#" class="lista-menu__link">Home</a></li>
-                <li class="lista-menu__item"><a href="#" class="lista-menu__link">Todos</a></li>
-                <li class="lista-menu__item"><a href="#" class="lista-menu__link">Programação</a></li>
-                <li class="lista-menu__item"><a href="#" class="lista-menu__link">Redes</a></li>
-                <li class="lista-menu__item"><a href="#" class="lista-menu__link">Design & UX</a></li>
-            </ul>
-            <img src="../Icons/Logo.svg" alt="logo BrunaBooks" class="container__imagem">
-            <h1 class="container__titulo"><b class="container__titulo--negrito">Bruna</b>Books</h1>
-        </div>
-        <ul class="opcoes">
-            <input type="checkbox" id="opcoes-menu" class="opcoes__botao">
-            <label for="opcoes-menu" class="opcoes__rotulo">
-                <li class="opcoes__item">Livros</li>
-            </label>
-            <ul class="lista-menu">
-                <li class="lista-menu__item"><a href="#" class="lista-menu__link">Todos</a></li>
-                <li class="lista-menu__item"><a href="#" class="lista-menu__link">Programação</a></li>
-                <li class="lista-menu__item"><a href="#" class="lista-menu__link">Redes</a></li>
-                <li class="lista-menu__item"><a href="#" class="lista-menu__link">Design & UX</a></li>
-            </ul>
-
-            <li class="opcoes__item"><a href="#" class="opcoes__link">Home</a></li>
-            <li class="opcoes__item"><a href="#" class="opcoes__link">Contato</a></li>
-            <?php
-            if (true)
-                echo '<ul class="menu-admin">
-                    <input type="checkbox" id="opcoes-menu-admin" class="opcoes__botao__admin">
-                    <label for="opcoes-menu-admin" class="opcoes__rotulo__admin">
-                        <li class="opcoes__item__admin">ADMIN</li>
-                    </label>
-                    <ul class="lista-menu-admin" style="z-index:9999;">
-                        <li class="lista-menu__item"><a href="livrocreate.php" class="lista-menu__link">Cadastro de Produto</a></li>
-                        <li class="lista-menu__item"><a href="#" class="lista-menu__link">Gerir Usuário</a></li>
-                        <li class="lista-menu__item"><a href="#" class="lista-menu__link">Gerir Pedidos</a></li>
-                        <li class="lista-menu__item"><a href="#" class="lista-menu__link">Relatório de Vendas</a></li>
-                    </ul>
-                </ul>'
-            ?>
-
-        </ul>
-        <div class="containers">
-            <a href="#" class="container__link">
-                <div>
-                    <img src="../Icons/Compras.svg" alt="Carrinho de compra" class="container__imagem">
-                    <?php
-                    if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0)
-                        echo '<span class="badge badge-warning" id="lblCartCount"> ' . count($_SESSION['cart']) . ' </span>';
-                    ?>
-                </div>
-                <p class="container__texto">Minha sacola</p>
-            </a>
-            <a href="#" class="container__link">
-                <img src="../Icons/Usuário.svg" alt="Meu perfil" class="container__imagem">
-                <p class="container__texto">Meu perfil</p>
-            </a>
-        </div>
-    </header>
-    <form method="POST" action="processamentoRegistro.php" class="registroTotal">
+    <?php include 'Includes/header.php'; ?>
+    <form method="POST" action="../Controllers/UserController.php" class="registroTotal">
         <div class="registro">
             <div class="registroDescricao">
                 <div class="registroEntrar">
@@ -103,15 +39,14 @@
                     <input type="email" class="registroCampos" name="email" required>
 
                     <p class="registroTexto">Nome de Usuário</p>
-                    <input type="text" class="registroCampos" name="userName" required>
+                    <input type="text" class="registroCampos" name="userNickName" required>
 
                     <p class="registroTexto">Senha</p>
                     <input type="password"  class="registroCampos" name="senha" required><br>
 
-                    <button type="submit" class="registroBotao">Registrar</button>
-                     
+                    <button type="submit" class="registroBotao">Registrar</button>                    
                     
-                </div> 
+                </div>
                 
                
             </div>

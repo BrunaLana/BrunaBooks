@@ -42,12 +42,15 @@ select * from tbl_products;
 Create table tbl_users(
 	userId int not null auto_increment primary key,
 	userNome varchar(50) not null,
-	userSenha varchar(12) not null,
-    userDataNasc date not null,
+    userApelido varchar(50) not null,
+    userNickName varchar(50) not null,
+	userSenha varchar(500) not null,
+    userEmail varchar(50) not null,
+    userDataNasc date null,
 	userRole varchar(5) not null
 );
 
-insert into tbl_users select 1,'Bruna Lana', '123456', '1985-11-09','admin';
+insert into tbl_users select 1,'Bruna', 'Lana','bruna.lana', '$2y$12$lQqmH4hoaETe1PXSCdxHIeDTJz/D7VouFL3ZoPkEN35iP.cPVLM7y','bruna.lana@gmail.com', '1985-11-09','admin';
 
 create table tbl_morada(
 moradaId int not null auto_increment primary key,

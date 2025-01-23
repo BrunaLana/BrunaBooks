@@ -1,30 +1,29 @@
 <?php
 
+ini_set('max_execution_time', 30); // Increase the maximum execution time to 60 seconds
 
-function getDatabaseConnection()
-{    
-    $globalPDOConnection = null;
-        $dbServername = "localhost";
-        $dbUser = "root";
-        $dbPassword = "123456*";
-        $dbName = "brunabooks";
-        try {
-            $globalPDOConnection =  mysqli_connect($dbServername, $dbUser, $dbPassword, $dbName);
-        } catch (\Throwable $e) {
-            throw new Exception($e->getMessage());
-        }
-    return $globalPDOConnection;
+$servername = "localhost";
+$username = "root";
+$password = "123456*";
+$dbname = "brunabooks";
+
+function getDatabaseConnection() {
+    global $servername, $username, $password, $dbname;
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    return $conn;
 }
 
-function closeConnection($conn)
-{
-    $conn;
-    try {
-        if ($conn != null) {
-            $conn->close();
-        }
-        
-    } catch (\Throwable $th) {
-        throw new Exception($th->getMessage());
+function closeConnection($conn) {
+    if ($conn != null) {
+        $conn->close();
     }
 }
+?>
