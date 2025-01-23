@@ -15,13 +15,14 @@ function login()
 
         if ($user) {
             error_log("User found: " . $user->username);
+            error_log(password_verify($password, $user->password));
+            error_log(password_hash($password, PASSWORD_BCRYPT));
+            error_log($password);
+            Error_log($user->password);
         } else {
             error_log("User not found");
         }
-        error_log(password_verify($password, $user->password));
-        error_log(password_hash($password, PASSWORD_BCRYPT));
-        error_log($password);
-        Error_log($user->password);
+
 
         if ($user && password_verify($password, $user->password)) {
             error_log("Password verified for user: " . $user->username);
@@ -30,17 +31,11 @@ function login()
             exit();
         } else {
             error_log("Invalid username or password");
-            $error = 'Invalid username or password';
-            require '../Views/login.php';
+            $_SESSION['error_message'] =  'Invalid username or password';
+            header('Location: ../Views/login.php');
+            exit();
         }
     } else {
         require '../Views/login.php';
     }
-}
-
-function logout()
-{
-    SessionHelper::logout();
-    header('Location: /login');
-    exit();
 }
