@@ -8,10 +8,6 @@ require_once '../Controllers/CarrinhoController.php';
     <?php include '../Includes/header.php'; ?>
     <link rel="stylesheet" href="../Styles/carrinho.css">
 
-
-
-<body>
-    <?php include '../Includes/confirmDialog.php'; ?>
     <div class="container carrinho-container">
         <h2 class="titulo">Carrinho</h2>
         <?php
@@ -54,6 +50,6 @@ require_once '../Controllers/CarrinhoController.php';
         <h2 class="rodape__titulo">Grupo B.LANA</h2>
     </footer>
     <script src="../Script/site.js"></script>
-</body>
+    </body>
 
 </html>

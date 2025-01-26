@@ -17,6 +17,7 @@
     </head>
 
     <body>
+        <?php include '../Includes/confirmDialog.php'; ?>
         <header class="cabecalho">
             <div class="containers">
                 <input type="checkbox" id="menu" class="container__botao">
