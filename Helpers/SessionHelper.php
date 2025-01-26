@@ -16,8 +16,10 @@ class SessionHelper {
 
     public static function logout() {
         self::startSession();
-        session_unset();
-        session_destroy();
+        $_SESSION['logged_out'] = true;
+        unset($_SESSION['user_id']);
+        unset($_SESSION['username']);
+        unset($_SESSION['userrole']);
     }
 
     public static function isLoggedIn() {

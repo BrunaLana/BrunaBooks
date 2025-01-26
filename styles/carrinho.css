@@ -6,59 +6,70 @@ h1.carrinhoTitulo{
     font-weight: 700;
     padding: 1em 0 0.5em 0;
 }
-
-.botoesCarrinho{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
+.container-removeIcon{
+    padding: 0.7em !important;
 }
 
-.botaoComprar, .botaoContinuar{    
-    width: 50%; 
-    font-family: var(--fonte-principal);    
-    border-radius: 19px;
-    padding: 8px 12px;    
-    font-size: 16px;
-}
-
-.botaoComprar{ 
-    background-color: var(--laranja);
-    color: var(--branco);
-    border: none;
-    margin-top: 20px;
-    margin-bottom: 10px;   
-
-}
-
-.botaoContinuar{
-    border: 1px solid var(--azul);
-    color: var(--azul);
-    margin-bottom: 20px;    
-}
-
-
-
-
-
-@media screen and (min-width:1024px){
+@media screen and (min-width:1024px) {
+    .carrinho-container {
+        padding: 0% 15%;
+        max-width: 100%;
+        margin: 0;;
+    }
     h1.carrinhoTitulo{
         font-size: 26px;
         padding: 26px 0px 13px;
         color: var(--azul);
 
     }
-
-    .botaoComprar, .botaoContinuar{
-        width: 12%;
+    .carrinho-item {
+        display: flex;
+        align-items: center;
+        background-color: #fff;
+        margin: 10px 20px;
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
-
-    .botaoContinuar{
-        margin-bottom: 30px;
+    .carrinho-item img {
+        max-width: 100px;
+        height: auto;
+        margin-right: 20px;
     }
-
-
-
-   
+    .carrinho-item .item-info {
+        flex-grow: 1;
+    }
+    .carrinho-item .item-info h5 {
+        margin: 0;
+        font-size: 18px;
+    }
+    .carrinho-item .item-info p {
+        margin: 5px 0;
+        color: #666;
+    }
+    .carrinho-item .item-price,
+    .carrinho-item .item-quantity {
+        text-align: center;
+        margin: 0 10px;
+    }
+    .carrinho-item .item-remove {
+        text-align: center ;
+        margin-left: 0px;
+    }
+    .total-container {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin: 20px 20px 0;
+    }
+    .total-container span {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .botoesCarrinho {
+        display: flex;
+        justify-content: flex-end; /* Alinha os botões à direita */
+        margin: 20px 20px 20px;
+    }
 
 }

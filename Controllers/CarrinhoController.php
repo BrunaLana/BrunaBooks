@@ -1,43 +1,45 @@
 <?php
-include('../conn.php');
-session_start();
+require_once '../Helpers/SessionHelper.php';
+require_once '../Models/Livro.php';
 
+SessionHelper::startSession();
 
-function GetItemsCarrinho()
-{
-    if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
-        $conn = getDatabaseConnection();
-
-        
-        $cart = $_SESSION['cart'];
-        $total = 0;
-
-        // Prepare the SQL statement
-        //$placeholders = implode(',', array_fill(0, count($cart), '?'));
-        $placeholders = implode('\', \'', $cart );
-        //echo $placeholders;
-        //echo ("SELECT * FROM tbl_products WHERE productId IN ($placeholders)");
-        $sql = ("SELECT * FROM tbl_products WHERE productId IN ('".$placeholders."')");
-
-        // Get the result
-        $items = $conn->query($sql);
-
-        // Close the connection
-       closeConnection($conn);
-
-        return $items;
+function GetItemsCarrinho() {
+    $items = [];
+    if (isset($_SESSION['cart'])) {
+        $ids = array_unique($_SESSION['cart']);
+        foreach ($ids as $id) {
+            $items[] = Livro::getLivroById($id);
+        }
     }
+    return $items;
 }
 
-function CalculaTotal(){
- 
+function CalculaTotal() {
     $total = 0;
-    $items = GetItemsCarrinho();
-    $itemsQtd= array_count_values($_SESSION['cart']);
-    foreach ($items as $item) {
-        $total += $item['productPrice'] * $itemsQtd[$item['productId']];
+    if (isset($_SESSION['cart'])) {
+        foreach ($_SESSION['cart'] as $id) {
+            $livro = Livro::getLivroById($id);
+            $total += $livro->productPrice;
+        }
     }
     return $total;
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
+    if ($_POST['action'] == 'add' && isset($_POST['id'])) {
+        $_SESSION['cart'][] = $_POST['id'];
+        header('Location: ../Views/carrinho.php');
+        exit();
+    }
+}
+
+if (isset($_GET['remove'])) {
+    $idToRemove = $_GET['remove'];
+    $_SESSION['cart'] = array_filter($_SESSION['cart'], function($id) use ($idToRemove) {
+        return $id != $idToRemove;
+    });
+    header('Location: ../Views/carrinho.php');
+    exit();
+}
 ?>

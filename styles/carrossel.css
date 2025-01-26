@@ -12,7 +12,8 @@
     width: 100%;
 }
 
-.swiper-button-prev, .swiper-button-next {
+.swiper-button-prev,
+.swiper-button-next {
     display: none;
 }
 
@@ -70,7 +71,7 @@
     color: var(--branco);
     font-weight: 700;
     text-decoration: none;
-    
+
 }
 
 @media screen and (min-width:1024px) {
@@ -97,9 +98,9 @@
         margin: 2em auto;
     }
 
- 
 
-  
+
+
 }
 
 @media screen and (min-width:1728px) {
@@ -131,7 +132,6 @@
 
     .card {
         width: 65%;
-        
+
     }
 }
-

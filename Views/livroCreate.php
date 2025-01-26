@@ -1,64 +1,81 @@
 <?php
-include('../Controllers/LivrosController.php');
+require_once '../Helpers/SessionHelper.php';
+require_once '../Models/Livro.php';
+
+SessionHelper::startSession();
+
+// Verifica se o usuário está logado e se é administrador
+if (!SessionHelper::isLoggedIn() || $_SESSION['userrole'] !== 'admin') {
+    $_SESSION['error_message'] = 'Acesso negado. Somente administradores podem acessar a página de gestão de usuário!';
+    header('Location: ../index.php');
+    exit();
+}
+// Lógica para obter a lista de usuários
+$livros = Livro::getAllLivros();
 ?>
 <!DOCTYPE html>
 <html>
 <?php include '../Includes/header.php'; ?>
+<link rel="stylesheet" href="../Styles/livroCreate.css">
 <hr />
-
-<body>
-    <h1 class="cadastro_title">Cadastro de Livro</h1>
+<h2 class="titulo">Cadastro de Livro</h1>
     <section class="cadastro_Livros">
         <form class="form_livro_create" action="../controllers/LivrosController.php" method="POST" enctype="multipart/form-data">
 
-            <label for="title">Título:</label>
-            <input type="text" id="title" name="titulo" required><br><br>
+            <div class="form-group">
+                <label for="title">Título</label>
+                <input type="text" class="form-control texto-campos" id="title" name="titulo" required>
+            </div>
 
-            <label for="description">Descrição:</label>
-            <textarea id="description" name="descricao" required></textarea><br><br>
+            <div class="form-group">
+                <label for="description">Descrição</label>
+                <textarea id="description" class="form-control" name="descricao" required></textarea>
+            </div>
 
-            <label for="price">Preço:</label>
-            <input type="number" id="price" name="preco" step="0.01" required><br><br>
+            <div class="form-group">
+                <label for="price">Preço</label>
+                <input type="number" class="form-control texto-campos" id="price" name="preco" step="0.01" required>
+            </div>
 
-            <label for="imagem">Imagem:</label>
-            <input type="file" id="imagem" name="imagem" accept="image/*" required><br><br>
-
-            <input type="submit" class="botao_create" value="Create Product">
-
+            <div class="form-group">
+                <label for="imagem">Imagem</label>
+                <input type="file" class="form-control texto-campos" id="imagem" name="imagem" accept="image/*" required>
+            </div>
+            <button type="submit" class="registroBotao btn botao-confirm">Salvar</button>
         </form>
     </section>
-    <section class="listagemLivros">
-        <?php 
-         $books = getAll();
-         echo '<table>
+    <section class="listagemLivros container mt-5">
+        <div class="container mt-5">
+            <h2 class="titulo">Listagem de Livros</h2>
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Id</th>
                         <th>Título</th>
                         <th>Ativo?</th>
-                        <th>Editar</th>
-                        <th>Ativar / Desativar</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>';
-         while ($book = $books->fetch_assoc()):
-             echo  '<tr>
-                        <td>'.$book['productId'].'</td>
-                        <td>'.$book['productName'].'</td>
-                        <td>'.($book['isActive']==1? "Sim": "Não").'</td>
-                        <td>Editar</td>
-                        <td>'.($book['isActive']==1? "Desativar": "Ativar").'</td>
-                    </tr>';
-         endwhile;
-         echo ' </tbody>
-               </table>'
-        ?>
+
+                    <?php foreach ($livros as $livro): ?>
+                        <tr>
+                            <td><?php echo $livro->productId; ?></td>
+                            <td><?php echo $livro->productName; ?></td>
+                            <td><?php echo $livro->isActive ? 'Sim' : 'Não'; ?></td>
+                            <td>
+                                <a href="?id=<?php echo $livro->productId; ?>" class="btn botao-confirm btn-sm">Editar</a>
+                                <a href="../Controllers/LivrosController.php?action=delete&id=<?php echo $livro->productId; ?>" class="btn botao-delete btn-sm">Excluir</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </section>
-   
-    <hr />
     <footer class="rodape">
         <h2 class="rodape__titulo">Grupo B.LANA</h2>
     </footer>
-</body>
+    </body>
 
 </html>

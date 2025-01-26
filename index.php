@@ -2,11 +2,27 @@
 require_once 'conn.php';
 session_start();
 $conn = getDatabaseConnection();
+
+$error_message = '';
+if (isset($_SESSION['error_message'])) {
+    $error_message = $_SESSION['error_message'];
+    unset($_SESSION['error_message']);
+}
+
+$LoggedOut = false;
+if (isset($_SESSION['logged_out'])) {
+    $LoggedOut = $_SESSION['logged_out'];
+    unset($_SESSION['logged_out']);
+}
+
+if (!empty($error_message  && str_contains($error_message, 'Acesso negado'))) {
+    echo '<script>alert("' . $error_message . '");</script>';
+}
 ?>
 <!DOCTYPE html>
 <html>
 
-<?php include 'Includes/header.php'; ?>
+<?php include 'Includes/rootHeader.php'; ?>
 <section class="banner">
     <h2 class="banner__titulo">Já sabe por onde começar?</h2>
     <p class="banner__texto">Encontre em nossa estante o que precisa para seu desenvolvimento!</p>
@@ -179,12 +195,11 @@ $conn = getDatabaseConnection();
 <a href="../views/livros.php" class="botoesItens"><img src="imagens/iconUsuário.svg"
         alt="adicionar no carrinho"></a>
 
-<script>
-    // Verifica se o parâmetro 'logout' está presente na URL
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('logout') && urlParams.get('logout') === 'success') {
-        alert('Logout realizado com sucesso!');
-    }
-</script>
+<?php
+if ($LoggedOut) {
+    echo '<script>alert("Logout realizado com sucesso!");</script>';
+    $LoggedOut = false;
+}
+?>
 
 </html>

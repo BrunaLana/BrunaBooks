@@ -4,15 +4,12 @@
 @import url("styles/topicos.css");
 @import url("styles/contato.css");
 @import url("styles/rodape.css");
-@import url("styles/livroCreate.css");
-@import url("styles/login.css");
-@import url("styles/carrinho.css");
-@import url("styles/registro.css");
 
 :root {
     --cor-de-fundo: #EBECEE;
     --branco: #FFFFFF;
     --laranja: #EB9B00;
+    --laranja-claro: #EBAF38;
     --azul-degrade: linear-gradient(97.54deg, #002F52 35.49%, #326589 165.37%);
     --fonte-principal: "Poppins";
     --azul: #002F52;
@@ -20,6 +17,50 @@
     --preto: #000000;
     --cinza: #474646;
     --cinza-claro: #858585;
+    --vermelho: #fb3b3b;
+    --vermelho-vivo: #ff0000;
+}
+
+.confirm-dialog {
+    position: fixed;
+    width: 20%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: var(--azul);
+    COLOR:var(--branco);
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: none; /* Inicialmente escondido */
+}
+
+.confirm-dialog .confirm-buttons {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.confirm-dialog .confirm-buttons button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.alerta {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* Certifique-se de que o alerta esteja acima de outros elementos */
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 body {
@@ -39,26 +80,170 @@ body {
     white-space: nowrap;
 }
 
-.badge {
-    padding-left: 9px;
-    padding-right: 9px;
-    -webkit-border-radius: 9px;
-    -moz-border-radius: 9px;
-    border-radius: 9px;
-  }
-  
-  .label-warning[href],
-  .badge-warning[href] {
+
+.label-warning[href],
+.badge-warning[href] {
     background-color: #c67605;
-  }
-  #lblCartCount {
+}
+
+#lblCartCount {
     font-size: 12px;
     background: #ff0000;
     color: #fff;
     padding: 0 5px;
     vertical-align: top;
-    margin-left: -10px; 
+    margin-left: -10px;
 }
+
 .dropdown-toggle::after {
-    display: none !important; 
+    display: none !important;
+}
+
+input.texto-campos {
+    width: 90%;
+    height: 40px !important;
+    margin-bottom: 18px !important;
+    border-style: inset;
+    border-color: light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+}
+
+h2.titulo {
+    color: var(--laranja);
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 1em 0 0.5em 0;
+}
+
+@media screen and (min-width:1024px) {
+
+    input.texto-campos {
+        padding: 10px 20px 10px 10px !important;
+        margin-right: 350px !important;
+        width: 100%;
+        margin-bottom: 20px !important;
+        border-style: inset;
+        border-color: light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    }
+
+    button.botao-confirm,
+    a.botao-confirm {
+        background-color: var(--laranja);
+        color: var(--branco);
+        font-family: var(--fonte-principal);
+        border: none;
+        border-radius: 19px;
+        padding: 8px 20px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        text-decoration: none;
+        --bs-btn-border-color: var(--laranja);
+        --bs-btn-hover-color: var(--branco);
+        --bs-btn-hover-bg: var(--laranja-claro);
+        --bs-btn-hover-border-color: var(--laranja-claro);
+        --bs-btn-focus-shadow-rgb: 49, 132, 253;
+        --bs-btn-active-color: var(--branco);
+        --bs-btn-active-bg: var(--laranja-claro);;
+        --bs-btn-active-border-color:var(--laranja-claro);
+        --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+        --bs-btn-disabled-color: var(--branco);
+        --bs-btn-disabled-bg: var(--laranja-claro);
+        --bs-btn-disabled-border-color: var(--laranja-claro);
+    }
+
+    button.botao-delete,
+    a.botao-delete {
+        background-color: var(--laranja);
+        color: var(--branco);
+        font-family: var(--fonte-principal);
+        border: none;
+        border-radius: 19px;
+        padding: 8px 20px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        text-decoration: none;
+        --bs-btn-border-color: var(--vermelho);
+        --bs-btn-hover-color: var(--branco);
+        --bs-btn-hover-bg: var(--vermelho);
+        --bs-btn-hover-border-color: var(--vermelho);
+        --bs-btn-focus-shadow-rgb: 49, 132, 253;
+        --bs-btn-active-color: var(--branco);
+        --bs-btn-active-bg: var(--vermelho);;
+        --bs-btn-active-border-color:var(--vermelho);
+        --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+        --bs-btn-disabled-color: var(--branco);
+        --bs-btn-disabled-bg: var(--vermelho);
+        --bs-btn-disabled-border-color: var(--vermelho);
+    }
+
+    h2.titulo {
+        color: var(--azul);
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+}
+
+/*stylo slider */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+    border: 2px solid var(--laranja);
+    /* Borda amarela */
+    border-radius: 34px;
+    margin-bottom: 15px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 15px;
+    width: 15px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--laranja);
+    /* Botão interno amarelo */
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: var(--azul) !important;
+}
+
+input:checked+.slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+.form-check {
+    padding-left: 0px !important;
 }

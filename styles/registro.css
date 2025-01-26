@@ -1,4 +1,4 @@
-h2.registroTitulo{
+h2.registroTitulo {
     color: var(--laranja);
     text-align: center;
     text-transform: uppercase;
@@ -7,81 +7,73 @@ h2.registroTitulo{
     padding: 1em 0 0.5em 0;
 }
 
-div.registroEntrar{
+div.registroEntrar {
     margin: 0 30px;
 }
 
-input.registroCampos{
-    width: 90%;
-    height: 40px;
-    margin-bottom: 18px;
-}
+/*input.texto-campos {
+    width: 90% ;
+    height: 40px !important;
+    margin-bottom: 18px !important;    
+    border-style: inset;
+    border-color: light-dark(rgb(118, 118, 118), rgb(133, 133, 133));    
+}*/
 
-p.registroTexto{
+p.registroTexto {
     margin-bottom: 5px;
 }
 
-button.registroBotao{
+button.registroBotao {
     background-color: var(--laranja);
     color: var(--branco);
     border: none;
     margin-top: 10px;
     margin-bottom: 10px;
-    font-family: var(--fonte-principal);    
+    font-family: var(--fonte-principal);
     border-radius: 19px;
-    padding: 8px 12px;    
+    padding: 8px 12px;
     font-size: 16px;
 }
 
-@media screen and (min-width:1024px){
+@media screen and (min-width:1024px) {
 
-    .registroTotal{
+    input.texto-campos {
+        width: 100% !important;
+    }
+
+    .registroTotal {
         display: flex;
         justify-content: center;
     }
 
-    div.registro{
+    div.registro {
         background: var(--branco);
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 10px;
         margin-top: 50px;
         margin-bottom: 50px;
-        padding: 80px; 
+        padding: 80px;
     }
 
-    div.registroDescricao{
+    div.registroDescricao {
         display: flex;
         justify-content: space-between;
     }
 
-    h2.registroTitulo{
+    h2.registroTitulo {
         color: var(--azul);
         font-size: 24px;
         font-weight: 500;
         margin-bottom: 20px;
     }
 
-    p.registroTexto{
+    p.registroTexto {
         font-weight: 300;
         margin: 8px 0;
 
     }
 
-    div.registroEntrar{
-
-    }
-
-
-
-    input.registroCampos{
-        padding: 10px 20px 10px 10px;
-        margin-right: 350px;
-        width: 100%;
-        margin-bottom: 20px;
-    }
-
-
-
+    div.registroEntrar {}
 
 
 }

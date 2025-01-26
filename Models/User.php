@@ -2,7 +2,8 @@
 
 require_once '../conn.php';
 
-class User {
+class User
+{
     public $id;
     public $username;
     public $password;
@@ -12,7 +13,8 @@ class User {
     public $apelido;
     public $dataNasc;
 
-    public static function findByUsername($username) {
+    public static function findByUsername($username)
+    {
         $conn = getDatabaseConnection();
         $stmt = $conn->prepare("SELECT * FROM tbl_users WHERE userNickName = ?");
         $stmt->bind_param("s", $username);
@@ -40,7 +42,8 @@ class User {
         }
     }
 
-    public static function getAllUsers() {
+    public static function getAllUsers()
+    {
         $conn = getDatabaseConnection();
         $stmt = $conn->prepare("SELECT * FROM tbl_users");
         $stmt->execute();
@@ -64,5 +67,34 @@ class User {
         closeConnection($conn);
         return $users;
     }
+
+    public static function getUserById($id)
+    {
+        $conn = getDatabaseConnection();
+        $stmt = $conn->prepare("SELECT * FROM tbl_users WHERE userId = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 0) {
+            $stmt->close();
+            closeConnection($conn);
+            return null;
+        }
+
+        $user_data = $result->fetch_assoc();
+        $user = new User();
+        $user->id = $user_data['userId'];
+        $user->username = $user_data['userNome'];
+        $user->password = $user_data['userSenha'];
+        $user->userrole = $user_data['userRole'];
+        $user->email = $user_data['userEmail'];
+        $user->nickname = $user_data['userNickName'];
+        $user->apelido = $user_data['userApelido'];
+        $user->dataNasc = $user_data['userDataNasc'];
+
+        $stmt->close();
+        closeConnection($conn);
+        return $user;
+    }
 }
-?>

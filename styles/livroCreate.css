@@ -1,22 +1,28 @@
-h1.cadastro_title{
+h1.cadastro_title {
     text-align: center;
     margin: 20px;
-    
+
 }
 
-section.cadastro_Livros{
+section.cadastro_Livros {
     margin-left: 20px;
 }
 
-input#title, textarea#description{
+input#title,
+textarea#description {
     width: 90%;
 }
 
-textarea#description{
+textarea#description {
     height: 120px;
+    padding: 10px 20px 10px 10px !important;
+    margin-right: 350px !important;
+    margin-bottom: 20px !important;
+    border-style: inset;
+    border-color: light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
 }
 
-input.botao_create{
+input.botao_create {
     background-color: var(--laranja);
     color: var(--branco);
     border: none;
@@ -25,76 +31,58 @@ input.botao_create{
     margin-bottom: 20px;
 }
 
-section.listagemLivros{
+section.listagemLivros {
     display: none;
 }
 
 @media screen and (min-width:1024px) {
 
-   
+    section.cadastro_Livros {
+        margin-left: 0px;
+        display: flex;
+        justify-content: center;
+    }
 
- section.cadastro_Livros{
-     margin-left: 0px;
-     display: flex;
-     justify-content: center;
- }
+    form_livro_create {
+        width: 50%;
+        background-color: var(--branco);
+        padding: 50px;
+        margin-bottom: 40px;
+        border-radius: 30px;
+    }
 
+    input#title,
+    textarea#description {
+        width: 100%;
+    }
 
-
-form_livro_create{
-    width: 50%;
-    background-color: var(--branco);
-    padding: 50px;
-    margin-bottom: 40px;
-    border-radius:30px;   
-
-    
+    textarea#description {
+        height: 120px;
+        padding: 10px 20px 10px 10px !important;
+        margin-right: 350px !important;
+        margin-bottom: 20px !important;
+        border-style: inset;
+        border-color: light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    }
 }
 
-input#title, textarea#description{
-    width: 100%;
-}
+@media screen and (min-width:1728px) {
 
-label{
-    font-size: 20px;
-}
-
-
-
-a.opcoes__link{
-    font-size: 20px;
-   
-    
-}
-
-li.opcoes__item{
-    padding: 40px 20px;
-    color:var(--preto);
-}
-}
-
-@media screen and (min-width:1728px){
-
-       section.listagemLivros{
+    section.listagemLivros {
         display: block;
         width: 50%;
         margin-left: 5%;
         background-color: var(--branco);
         padding: 50px;
         margin-bottom: 40px;
-        border-radius:30px;
-       
-       
+        border-radius: 30px;
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 0;
+        width: 100%;
+        padding-right: calc(var(--bs-gutter-x)* .5);
+        padding-left: calc(var(--bs-gutter-x)* .5);
+        margin-right: auto;
+        margin-left: auto;
     }
-
-    td,th{
-        border: solid 1px black;
-        padding: 10px;
-    }
-
-
 
 }
-
-
-

@@ -29,7 +29,7 @@
     position: absolute;
     top: 100%;
     width: 45vw;
-    z-index:999;
+    z-index: 999;
     padding: 0;
 }
 
@@ -38,11 +38,11 @@
     position: absolute;
     top: 100%;
     width: 45vw;
-    z-index:999;
+    z-index: 999;
     padding: 0;
 }
 
-.menu-admin{
+.menu-admin {
     padding: 0;
 }
 
@@ -95,6 +95,60 @@
 
 .container__botao:checked~.container__rotulo {
     background: var(--azul-degrade);
+}
+
+.badge {
+    display: none !important;
+    background-color: var(--laranja);
+    padding: 5px 7px !important;
+    color: white;
+    border-radius: 60% !important;
+    position: absolute;
+    top: 37px;
+    right: 10%;
+    transform: translate(50%, -50%);
+    font-size: 12px;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1080px) {
+    .badge {
+        display: block !important;        
+        right: 10%;       
+    }
+}
+
+@media screen and (min-width: 1081px) and (max-width: 1300px) {
+    .badge {
+        display: block !important;        
+        right: 9%;       
+    }
+}
+
+@media screen and (min-width: 1301px) and (max-width: 1450px) {
+    .badge {
+        display: block !important;
+        right: 8%;
+    }
+}
+
+@media screen and (min-width: 1451px) and (max-width: 1726px) {
+    .badge {
+        display: block !important;
+        right: 6%;
+    }
+}
+
+@media screen and (min-width: 1728px) and (max-width: 2044px) {
+    .badge {
+        display: block !important;
+        right: 17%;
+    }
+}
+@media screen and (min-width: 2045px){
+    .badge {
+        display: block !important;
+        right: 12%;
+    }
 }
 
 @media screen and (min-width:1024px) {
@@ -208,7 +262,7 @@
     }
 
     .opcoes {
-        margin-right: auto;        
+        margin-right: auto;
     }
 
     .container__texto {

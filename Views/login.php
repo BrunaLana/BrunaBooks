@@ -34,24 +34,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <?php include '../Includes/header.php'; ?>
+<link rel="stylesheet" href="../Styles/login.css">
+<hr />
 <div class="loginTotal">
     <div class="login">
         <div class="loginDescricao">
             <form method="POST" class="loginEntrar">
                 <h2 class="loginTitulo">Iniciar Sessão</h2>
+                <div class="form-group">
                 <p class="loginTexto">Nome de Usuário</p>
-                <input type="text" class="loginCampos" name="user_name" required>
+                <input type="text" class="form-control texto-campos" name="user_name" required>
+                </div>
+
+                <div class="form-group">
                 <p class="loginTexto">Senha</p>
-                <input type="password" class="loginCampos" name="user_senha" required><br>
+                <input type="password" class="form-control texto-campos" name="user_senha" required><br>
                 <?php
-                if (!empty($error_message  && str_contains($error_message, 'Acesso negado'))) {
-                    echo '<script>alert("' . $error_message . '");</script>';
-                
-                } else if (!empty($error_message)) {
+                if (!empty($error_message) && !str_contains($error_message, 'Acesso negado')) {
                     echo '<p style="color:red; font-size:13px;margin-bottom:20px">' . $error_message . '</p>';
                 }
                 ?>
-                <button type="submit" class="loginBotao">Entrar</button>
+                </div>
+
+                <button type="submit" class="btn botao-confirm">Entrar</button>
             </form>
             <hr>
             <div class="loginRegistro">
@@ -59,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p class="loginTexto" id="textoRegistro">Se ainda não tem uma conta crie aqui e tenha acesso a
                     muitas vantagens!</p>
 
-                <a href="../Views/registro.php" class="loginBotao">Criar conta</a>
+                <a href="../Views/registro.php" class="btn botao-confirm">Criar conta</a>
             </div>
         </div>
     </div>

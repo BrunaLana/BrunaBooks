@@ -1,37 +1,49 @@
 <!DOCTYPE html>
 <html>
-    <?php include 'Includes/header.php'; ?>
-    <form method="POST" action="../Controllers/UserController.php" class="registroTotal">
-        <div class="registro">
+
+<head>
+    <?php include '../Includes/header.php'; ?>
+    <link rel="stylesheet" href="../Styles/registro.css">
+    <hr />
+    <div class="registroTotal">
+        <form method="POST" action="../Controllers/UserController.php" class="registro">
             <div class="registroDescricao">
                 <div class="registroEntrar">
-                    <h2 class="registroTitulo">Crie uma conta com seu e-mail</h2>
+                    <h2 class="titulo">Crie uma conta com seu e-mail</h2>
 
-                    <p class="registroTexto">Nome</p>
-                    <input type="text" class="registroCampos" name="nome" required>
+                    <div class="form-group">
+                        <label class="registroTexto" for="nome">Nome</label>
+                        <input type="text" class=" form-control texto-campos" id="nome" name="nome" required>
+                    </div>
 
-                    <p class="registroTexto">Apelido</p>
-                    <input type="text" class="registroCampos" name="apelido" required>
+                    <div class="form-group">
+                        <label class="registroTexto" for="apelido">Apelido</label>
+                        <input type="text" class=" form-control texto-campos" id="apelido" name="apelido" required>
+                    </div>
 
-                    <p class="registroTexto">Email</p>
-                    <input type="email" class="registroCampos" name="email" required>
+                    <div class="form-group">
+                        <label class="registroTexto" for="email">Email</label>
+                        <input type="email" class=" form-control texto-campos" id="email" name="email" required>
+                    </div>
 
-                    <p class="registroTexto">Nome de Usuário</p>
-                    <input type="text" class="registroCampos" name="userNickName" required>
+                    <div class="form-group">
+                        <label class="registroTexto" for="userNickName">Nome de Usuário</label>
+                        <input type="text" class=" form-control texto-campos" id="userNickName" name="userNickName" required>
+                    </div>
 
-                    <p class="registroTexto">Senha</p>
-                    <input type="password"  class="registroCampos" name="senha" required><br>
+                    <div class="form-group">
+                        <label class="registroTexto" for="senha">Senha</label>
+                        <input type="password" class=" form-control texto-campos" id="senha" name="senha" required>
+                    </div>
 
-                    <button type="submit" class="registroBotao">Registrar</button>                    
-                    
+                    <button type="submit" class="registroBotao btn botao-confirm">Registrar</button>
                 </div>
-                
-               
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
     <footer class="rodape">
-    <h2 class="rodape__titulo">Grupo B.LANA</h2>
-</footer>
+        <h2 class="rodape__titulo">Grupo B.LANA</h2>
+    </footer>
+    </body>
 
 </html>
