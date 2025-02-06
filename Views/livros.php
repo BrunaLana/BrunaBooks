@@ -17,7 +17,6 @@ if (isset($_GET['addCart'])) {
 <!DOCTYPE html>
 <html>
 <?php include '../Includes/header.php'; ?>
-<hr />
 <section class="">
     <div class="row row-cols-1 row-cols-md-4 g-5">
         <?php
@@ -45,17 +44,6 @@ if (isset($_GET['addCart'])) {
         <?php endforeach; ?>
     </div>
 </section>
-<section class="contato">
-    <div class="contato__descricao">
-        <h2 class="contato__titulo">Fique por dentro das novidades!</h2>
-        <p class="contato__texto">Atualizações de e-books, novos livros, promoções e outros.</p>
-    </div>
-    <input type="email" placeholder="Cadastre seu e-mail" class="contato__email">
-</section>
-<hr />
-<footer class="rodape">
-    <h2 class="rodape__titulo">Grupo B.LANA</h2>
-</footer>
-</body>
+<?php include '../Includes/contatoFooter.php'; ?>
 
 </html>

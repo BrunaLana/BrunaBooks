@@ -102,7 +102,7 @@ body {
 input.texto-campos {
     width: 90%;
     height: 40px !important;
-    margin-bottom: 18px !important;
+    margin-bottom: 18px;
     border-style: inset;
     border-color: light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
 }
@@ -122,7 +122,7 @@ h2.titulo {
         padding: 10px 20px 10px 10px !important;
         margin-right: 350px !important;
         width: 100%;
-        margin-bottom: 20px !important;
+        margin-bottom: 20px;
         border-style: inset;
         border-color: light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
     }

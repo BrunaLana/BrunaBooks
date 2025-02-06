@@ -67,4 +67,32 @@ class Livro
         closeConnection($conn);
         return $livro;
     }
+
+    public static function find($productId) {
+        $conn = getDatabaseConnection();
+        $stmt = $conn->prepare("SELECT * FROM tbl_products WHERE productId = ?");
+        $stmt->bind_param("i", $productId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 0) {
+            $stmt->close();
+            closeConnection($conn);
+            return null;
+        }
+
+        $livro_data = $result->fetch_assoc();
+        $livro = new Livro();
+        $livro->productId = $livro_data['productId'];
+        $livro->productName = $livro_data['productName'];
+        $livro->productDesc = $livro_data['productDesc'];
+        $livro->productImg = $livro_data['productImg'];
+        $livro->productPrice = $livro_data['productPrice'];
+        $livro->ProductQtt = $livro_data['ProductQtt'];
+        $livro->isActive = $livro_data['isActive'];
+
+        $stmt->close();
+        closeConnection($conn);
+        return $livro;
+    }
 }

@@ -17,7 +17,6 @@ $livros = Livro::getAllLivros();
 <html>
 <?php include '../Includes/header.php'; ?>
 <link rel="stylesheet" href="../Styles/livroCreate.css">
-<hr />
 <h2 class="titulo">Cadastro de Livro</h1>
     <section class="cadastro_Livros">
         <form class="form_livro_create" action="../controllers/LivrosController.php" method="POST" enctype="multipart/form-data">
@@ -73,9 +72,6 @@ $livros = Livro::getAllLivros();
             </table>
         </div>
     </section>
-    <footer class="rodape">
-        <h2 class="rodape__titulo">Grupo B.LANA</h2>
-    </footer>
-    </body>
+    <?php include '../Includes/contatoFooter.php'; ?>
 
 </html>

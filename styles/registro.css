@@ -10,15 +10,6 @@ h2.registroTitulo {
 div.registroEntrar {
     margin: 0 30px;
 }
-
-/*input.texto-campos {
-    width: 90% ;
-    height: 40px !important;
-    margin-bottom: 18px !important;    
-    border-style: inset;
-    border-color: light-dark(rgb(118, 118, 118), rgb(133, 133, 133));    
-}*/
-
 p.registroTexto {
     margin-bottom: 5px;
 }

@@ -17,7 +17,7 @@
     </head>
 
     <body>
-        <?php include '../Includes/confirmDialog.php'; ?>
+        <?php include 'Includes/confirmDialog.php'; ?>
         <header class="cabecalho">
             <div class="containers">
                 <input type="checkbox" id="menu" class="container__botao">
@@ -32,16 +32,16 @@
                     <li class="lista-menu__item"><a href="#" class="lista-menu__link">Redes</a></li>
                     <li class="lista-menu__item"><a href="#" class="lista-menu__link">Design & UX</a></li>
                 </ul>
-                <img src="Icons/Logo.svg" alt="logo BrunaBooks" class="container__imagem">
-                <h1 class="container__titulo"><b class="container__titulo--negrito">Bruna</b>Books</h1>
+                <a href="#" class="container__link">
+                    <img src="Icons/Logo.svg" alt="logo BrunaBooks" class="container__imagem">
+                    <h1 class="container__titulo"><b class="container__titulo--negrito">Bruna</b>Books</h1>
+                </a>
             </div>
             <ul class="opcoes">
                 <li class="opcoes__item"><a href="Views/livros.php" class="lista-menu__link">Livros</a></li>
                 <li class="opcoes__item"><a href="#" class="opcoes__link">Home</a></li>
                 <li class="opcoes__item"><a href="#" class="opcoes__link">Contato</a></li>
-                <?php
-                if (isset($_SESSION['userrole']) && $_SESSION['userrole'] == 'admin')
-                    echo '<ul class="menu-admin">
+               <ul class="menu-admin">
                     <input type="checkbox" id="opcoes-menu-admin" class="opcoes__botao__admin">
                     <label for="opcoes-menu-admin" class="opcoes__rotulo__admin">
                         <li class="opcoes__item__admin">ADMIN</li>
@@ -51,8 +51,7 @@
                         <li class="lista-menu__item"><a href="views/userManagement.php" class="lista-menu__link">Gerir Usuário</a></li>
                         <li class="lista-menu__item"><a href="#" class="lista-menu__link">Gerir Pedidos</a></li>
                     </ul>
-                </ul>'
-                ?>
+                </ul>
             </ul>
             <div class="containers">
                 <a href="./Views/carrinho.php" class="container__link">
@@ -69,7 +68,6 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <?php if (isset($_SESSION['user_id'])): ?>
-                            <li><a class="dropdown-item" href="views/profile.php">Perfil</a></li>
                             <li><a class="dropdown-item" href="views/meusPedidos.php">Pedidos</a></li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -82,3 +80,4 @@
                 </div>
             </div>
         </header>
+        <hr />

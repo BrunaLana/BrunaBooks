@@ -7,7 +7,7 @@ SessionHelper::startSession();
 // Verifica se o usuário está logado e se é administrador
 if (!SessionHelper::isLoggedIn() || $_SESSION['userrole'] !== 'admin') {
     $_SESSION['error_message'] = 'Acesso negado. Somente administradores podem acessar a página de gestão de usuário!';
-    header('Location: ../Views/login.php');
+    header('Location: ../index.php');
     exit();
 }
 
@@ -17,7 +17,6 @@ $users = User::getAllUsers();
 <!DOCTYPE html>
 <html lang="en">
 <?php include '../Includes/header.php'; ?>
-<hr />
 <div class="container mt-5">
     <h2 class="titulo">Gestão de Usuários</h2>
     <table class="table table-striped">
@@ -94,6 +93,6 @@ $users = User::getAllUsers();
         </div>
     <?php endif; ?>
 <?php endif; ?>
-</body>
+<?php include '../Includes/contatoFooter.php'; ?>
 
 </html>

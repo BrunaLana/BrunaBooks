@@ -32,31 +32,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         throw $th;
     }
 }
+if (!empty($error_message  && str_contains($error_message, 'carrinho'))) {
+    echo '<script>alert("' . $error_message . '");</script>';
+}
 ?>
 <?php include '../Includes/header.php'; ?>
 <link rel="stylesheet" href="../Styles/login.css">
-<hr />
 <div class="loginTotal">
     <div class="login">
         <div class="loginDescricao">
             <form method="POST" class="loginEntrar">
                 <h2 class="loginTitulo">Iniciar Sessão</h2>
                 <div class="form-group">
-                <p class="loginTexto">Nome de Usuário</p>
-                <input type="text" class="form-control texto-campos" name="user_name" required>
+                    <p class="loginTexto">Nome de Usuário</p>
+                    <input type="text" class="form-control texto-campos" name="user_name" required>
                 </div>
 
                 <div class="form-group">
-                <p class="loginTexto">Senha</p>
-                <input type="password" class="form-control texto-campos" name="user_senha" required><br>
-                <?php
-                if (!empty($error_message) && !str_contains($error_message, 'Acesso negado')) {
-                    echo '<p style="color:red; font-size:13px;margin-bottom:20px">' . $error_message . '</p>';
-                }
-                ?>
+                    <p class="loginTexto">Senha</p>
+                    <input type="password" class="form-control texto-campos mb-0" name="user_senha" required>
+                    <?php
+                    if (!empty($error_message) && str_contains($error_message, 'Invalid username or password')) {
+                        echo '<p style="margin-top:0px; color:red; font-size:13px;margin-bottom:0px">' . $error_message . '</p>';
+                    }
+                    ?>
                 </div>
 
-                <button type="submit" class="btn botao-confirm">Entrar</button>
+                <button type="submit" class="btn botao-confirm mt-3">Entrar</button>
             </form>
             <hr>
             <div class="loginRegistro">
@@ -69,7 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 </div>
-<footer class="rodape">
-    <h2 class="rodape__titulo">Grupo B.LANA</h2>
+<?php include '../Includes/contatoFooter.php'; ?>
 
-</footer>
+</html>
