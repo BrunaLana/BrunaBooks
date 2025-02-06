@@ -35,8 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php include '../Includes/header.php'; ?>
 <link rel="stylesheet" href="../Styles/carrinho.css">
 
-
-
 <div class="container carrinho-container">
     <h2 class="titulo">Carrinho</h2>
     <?php

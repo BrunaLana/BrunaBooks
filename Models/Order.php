@@ -7,6 +7,17 @@ class Order
     public $productPrice;
     public $productQtt;
     public $encomendaId;
+    public $userId;
+    public $moradaId;
+    public $morada;
+    public $numero;
+    public $complemento;
+    public $freguesia;
+    public $conselho;
+    public $distrito;
+    public $codigoPostal;
+    public $pais;
+    public $items;
 
     public static function getOrdersByUserId($userId)
     {
@@ -39,7 +50,7 @@ class Order
 
     public static function getOrderDetail($orderId)
     {
-        global $conn;
+        $conn = getDatabaseConnection();
         $stmt = $conn->prepare('SELECT * 
                                 from tbl_encomendas as e 
                                 inner join tbl_users as u on e.userId = u.userId
@@ -47,7 +58,37 @@ class Order
                                 inner join tbl_encomenda_products as ep on ep.encomendaId = e.encomendaId
                                 inner join tbl_products as p on ep.productId = p.productId
                                 where e.encomendaId = ?;');
-        $stmt->execute([$orderId]);
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+        $stmt->bind_param("i", $orderId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $orderDetails = [];
+        while ($row = $result->fetch_assoc()) {
+            $orderDetails[] = $row;
+        }
+        $stmt->close();
+        closeConnection($conn);
+        return $orderDetails;
+    }
+
+    public function save($conn)
+    {
+        $stmt = $conn->prepare('INSERT INTO tbl_morada (morada, numero, complemento, freguesia, conselho, distrito, codigoPostal, pais) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+        $stmt->bind_param('ssssssss', $this->morada, $this->numero, $this->complemento, $this->freguesia, $this->conselho, $this->distrito, $this->codigoPostal, $this->pais);
+        $stmt->execute();
+        $this->moradaId = $stmt->insert_id;
+        $stmt->close();
+
+        $stmt = $conn->prepare('INSERT INTO tbl_encomendas (userId, moradaId) VALUES (?, ?)');
+        $stmt->bind_param('ii', $this->userId, $this->moradaId);
+        $stmt->execute();
+        $this->encomendaId = $stmt->insert_id;
+        $stmt->close();
+
+        foreach ($this->items as $item) {
+            $stmt = $conn->prepare('INSERT INTO tbl_encomenda_products (encomendaId, productId, productQtt) VALUES (?, ?, ?)');
+            $stmt->bind_param('iii', $this->encomendaId, $item, 1);
+            $stmt->execute();
+            $stmt->close();
+        }
     }
 }

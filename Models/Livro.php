@@ -4,7 +4,6 @@ require_once '../conn.php';
 
 class Livro
 {
-
     public $productId;
     public $productName;
     public $productDesc;
@@ -15,7 +14,6 @@ class Livro
 
     public static function getAllLivros()
     {
-
         $conn = getDatabaseConnection();
         $stmt = $conn->prepare("SELECT * FROM tbl_products");
         $stmt->execute();
