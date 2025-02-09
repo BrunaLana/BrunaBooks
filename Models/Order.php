@@ -4,6 +4,7 @@ require_once '../conn.php';
 class Order
 {
     public $productImg;
+    public $productName;
     public $productPrice;
     public $productQtt;
     public $encomendaId;
@@ -19,17 +20,28 @@ class Order
     public $codigoPostal;
     public $pais;
     public $items;
+    public $totalOrderPrice;
+    public $dataEncomenda;
+    public $status;
+    public $statusId;
+    
+
 
     public static function getOrdersByUserId($userId)
     {
         $conn = getDatabaseConnection();
-        $stmt = $conn->prepare('SELECT * 
+        $stmt = $conn->prepare('SELECT e.encomendaId,e.dataEncomenda, s.statusDesc,s.statusId, sum(p.productPrice  * ep.productQtt) as total                                 
                                 from tbl_encomendas as e 
+                                inner join tbl_status as s on e.statusId = s.statusId
                                 inner join tbl_users as u on e.userId = u.userId
                                 inner join tbl_morada as m on e.moradaId = m.moradaId
                                 inner join tbl_encomenda_products as ep on ep.encomendaId = e.encomendaId
                                 inner join tbl_products as p on ep.productId = p.productId
-                                where u.userId = ?;');
+                                where e.userId = ?
+                                group by e.encomendaId,
+                                e.dataEncomenda,
+                                s.statusDesc,
+                                s.statusId;');
         $stmt->execute([$userId]);
 
         $result = $stmt->get_result();
@@ -37,7 +49,37 @@ class Order
         $orders = [];
         while ($row = $result->fetch_assoc()) {
             $order = new Order();
+            $order->encomendaId = $row['encomendaId'];
+            $order->totalOrderPrice = $row['total'];
+            $order->dataEncomenda = date('d/m/Y', strtotime($row['dataEncomenda']));
+            $order->status = $row['statusDesc'];
+            $order->statusId = $row['statusId'];
+            
+            $orders[] = $order;
+        }
+
+        $stmt->close();
+        closeConnection($conn);
+        return $orders;
+    }
+    public static function getOrderitemsByOrderId($orderId)
+    {
+        $conn = getDatabaseConnection();
+        $stmt = $conn->prepare('SELECT * 
+                                from tbl_encomenda_products as ep
+                                inner join tbl_encomendas as e  on ep.encomendaId = e.encomendaId
+                                inner join tbl_products as p on ep.productId = p.productId                                
+                                where e.encomendaId = ?
+                                order by p.productId;');
+        $stmt->execute([$orderId]);
+
+        $result = $stmt->get_result();
+
+        $orders = [];
+        while ($row = $result->fetch_assoc()) {
+            $order = new Order();
             $order->productImg = $row['productImg'];
+            $order->productName = $row['productName'];
             $order->productPrice = $row['productPrice'];
             $order->productQtt = $row['productQtt'];
             $order->encomendaId = $row['encomendaId'];
@@ -48,6 +90,7 @@ class Order
         closeConnection($conn);
         return $orders;
     }
+
 
     public static function getOrderDetail($orderId)
     {
@@ -69,6 +112,58 @@ class Order
         $stmt->close();
         closeConnection($conn);
         return $orderDetails;
+    }
+
+
+
+    public static function getAllOrders() {
+        $conn = getDatabaseConnection();  
+        $stmt = $conn->prepare('SELECT 
+                                    e.encomendaId,
+                                    e.dataEncomenda, 
+                                    s.statusDesc,
+                                    s.statusId,
+                                    (select count(eps.encomendaId) from tbl_encomenda_products as eps where eps.encomendaId = e.encomendaId) as `productQtt`,
+                                    sum(p.productPrice  * ep.productQtt) as total                                 
+                                from tbl_encomendas as e 
+                                inner join tbl_status as s on e.statusId = s.statusId
+                                inner join tbl_users as u on e.userId = u.userId
+                                inner join tbl_morada as m on e.moradaId = m.moradaId
+                                inner join tbl_encomenda_products as ep on ep.encomendaId = e.encomendaId
+                                inner join tbl_products as p on ep.productId = p.productId
+                                group by e.encomendaId,
+                                e.dataEncomenda,
+                                s.statusDesc,
+                                s.statusId,
+                                `productQtt`;');
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        $orders = [];
+        while ($row = $result->fetch_assoc()) {
+            $order = new Order();
+            $order->encomendaId = $row['encomendaId'];
+            $order->totalOrderPrice = $row['total'];
+            $order->dataEncomenda = date('d/m/Y', strtotime($row['dataEncomenda']));
+            $order->status = $row['statusDesc'];
+            $order->statusId = $row['statusId'];
+            $order->productQtt = $row['productQtt'];
+            $orders[] = $order;
+        }
+
+        $stmt->close();
+        closeConnection($conn);
+        return $orders;
+    }
+
+
+    
+    public static function updateOrderStatus($orderId, $status) {
+        $db = getDatabaseConnection();
+        $stmt = $db->prepare("UPDATE tbl_encomendas SET statusId = ? WHERE encomendaId = ?");
+        $stmt->bind_param('si', $status, $orderId);
+        $stmt->execute();
     }
 
     public function save($conn)
@@ -94,6 +189,12 @@ class Order
         $stmt->close();
 
         foreach ($this->items as $id => $quantity) {
+
+            $stmt = $conn->prepare('UPDATE tbl_products SET productQtt = productQtt - ? WHERE productId = ?');
+            $stmt->bind_param('ii', $quantity, $id);
+            $stmt->execute();
+            $stmt->close();
+
             $stmt = $conn->prepare('INSERT INTO tbl_encomenda_products (encomendaId, productId, productQtt) VALUES (?, ?, ?)');
             $stmt->bind_param('iii', $this->encomendaId, $id, $quantity);
             $stmt->execute();

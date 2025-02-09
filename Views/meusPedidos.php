@@ -27,10 +27,26 @@ $orders = Order::getOrdersByUserId($userId);
         <?php else: ?>
             <?php foreach ($orders as $order): ?>
                 <div class="pedido-item">
-                    <h5>Pedido #<?= htmlspecialchars($order->encomendaId) ?></h5>
-                    <p>Data: <?= htmlspecialchars($order->encomendaId) ?></p>
-                    <p>Total: <?= htmlspecialchars($order->productPrice * $order->productQtt) ?>€</p>
-                    <a href="orderDetails.php?orderId=<?= $order->encomendaId ?>" class="btn btn-primary">Ver Detalhes</a>
+                    <h2><b>Pedido #<?= htmlspecialchars($order->encomendaId) ?></b></h2>
+                    <div style="display: flex; justify-content: space-between;">
+                        <h5><b>Data da encomenda:</b> <?= htmlspecialchars($order->dataEncomenda) ?></h5>
+                        <h5><b>Status da encomenda:</b> <span  <?= $order->statusId == '3' ? 'style="color:red !important;"><b' : '' ?>><?= htmlspecialchars($order->status) ?></b></span></h5>
+                    </div>
+                    <?php 
+                    $orderItems = Order::getOrderitemsByOrderId($order->encomendaId);
+                    foreach ($orderItems as $item): ?>
+                        <div class="pedido-item">
+                            <div class="pedido-item-img col-sm-2" style="display: inline-block; vertical-align: top;">
+                                <img src="data:image/jpeg;base64,<?=$item->productImg ?>" alt="Imagem do produto">
+                            </div>
+                            <div class="pedido-item-info col-sm-9" style="display: inline-block;">
+                                <p><b>Produto:</b> <?= htmlspecialchars($item->productName) ?></p>
+                                <p><b>Preço:</b> <?= htmlspecialchars($item->productPrice) ?>€</p>
+                                <p><b>Quantidade:</b> <?= htmlspecialchars($item->productQtt) ?></p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                    <h2 class='' >Total: <?= htmlspecialchars($order->totalOrderPrice) ?>€</h2>
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>

@@ -43,7 +43,6 @@
             <ul class="opcoes">
                 <li class="opcoes__item"><a href="../Views/livros.php" class="lista-menu__link">Livros</a></li>
                 <li class="opcoes__item"><a href="../index.php" class="opcoes__link">Home</a></li>
-                <li class="opcoes__item"><a href="#" class="opcoes__link">Contato</a></li>
                 <ul class="menu-admin">
                     <input type="checkbox" id="opcoes-menu-admin" class="opcoes__botao__admin">
                     <label for="opcoes-menu-admin" class="opcoes__rotulo__admin">
@@ -52,7 +51,7 @@
                     <ul class="lista-menu-admin" style="z-index:9999;">
                         <li class="lista-menu__item"><a href="../views/livroCreate.php" class="lista-menu__link">Cadastro de Produto</a></li>
                         <li class="lista-menu__item"><a href="../views/userManagement.php" class="lista-menu__link">Gerir Usuário</a></li>
-                        <li class="lista-menu__item"><a href="#" class="lista-menu__link">Gerir Pedidos</a></li>
+                        <li class="lista-menu__item"><a href="../Views/gestaoPedidos.php" class="lista-menu__link">Gerir Pedidos</a></li>
                     </ul>
                 </ul>
             </ul>

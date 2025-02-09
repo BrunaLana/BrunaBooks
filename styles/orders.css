@@ -35,3 +35,8 @@ body {
 .pedido-item .btn {
     margin-top: 10px;
 }
+.pedido-item img {
+    max-width: 100px;
+    height: auto;
+    margin-right: 20px;
+}
