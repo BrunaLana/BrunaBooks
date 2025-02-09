@@ -1,8 +1,17 @@
 <?php
 require_once '../Helpers/SessionHelper.php';
 require_once '../Models/Livro.php';
+require_once '../Controllers/CarrinhoController.php';
 
 SessionHelper::startSession();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $productId = $_POST['productId'];
+    $action = $_POST['action'];
+    handleCarrinhoAction($productId, $action);
+    header('Location: livroDetalhe.php?id=' . $productId);
+    exit();
+}
 
 if (!isset($_GET['id'])) {
     header('Location: livros.php');
@@ -76,9 +85,9 @@ if (!$livro) {
     <p><?= htmlspecialchars($livro->productDesc) ?></p>
     <div class="preco-container">
         <p class="preco"><?= htmlspecialchars($livro->productPrice) ?>€</p>
-        <form action="../Controllers/CarrinhoController.php" method="post" style="display:inline;">
-            <input type="hidden" name="action" value="add">
-            <input type="hidden" name="id" value="<?= $livro->productId ?>">
+        <form method="post" style="display:inline;">
+            <input type="hidden" name="action" value="increase">
+            <input type="hidden" name="productId" value="<?= $livro->productId ?>">
             <button type="submit" class="btn botao-confirm">Adicionar ao Carrinho</button>
         </form>
     </div>
@@ -86,6 +95,15 @@ if (!$livro) {
         <a href="livros.php" class="btn botao-confirm btn-voltar">Voltar</a>
     </div>
 </div>
-<?php include '../Includes/contatoFooter.php'; ?>
+<?php include '../Includes/contatoFooter.php';
+if (isset($_SESSION['alertMessage'])) :
+    $alertMessage = $_SESSION['alertMessage'];
+    unset($_SESSION['alertMessage']);
+
+?>
+    <script>
+        alert('<?= $alertMessage ?>');
+    </script>
+<?php endif; ?>
 
 </html>

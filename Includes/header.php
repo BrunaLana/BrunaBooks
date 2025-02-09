@@ -59,8 +59,13 @@
             <div class="containers">
                 <a href="../Views/carrinho.php" class="container__link">
                     <img src="../Icons/Compras.svg" alt="Carrinho de compra" class="container__imagem">
-                    <?php if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0): ?>
-                        <span class="badge"><?= count($_SESSION['cart']) ?></span>
+                    <?php if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0):
+                        $itemCount = 0;
+                        foreach ($_SESSION['cart'] as $id => $quantity ) {
+                            $itemCount += $quantity;
+                        }
+                    ?>
+                        <span class="badge"><?= $itemCount ?></span>
                     <?php endif; ?>
                     <p class="container__texto">Minha sacola</p>
                 </a>
@@ -70,7 +75,7 @@
                         <p class="container__texto">Meu perfil</p>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <?php if (isset($_SESSION['user_id'])): ?>                            
+                        <?php if (isset($_SESSION['user_id'])): ?>
                             <li><a class="dropdown-item" href="../views/meusPedidos.php">Pedidos</a></li>
                             <li>
                                 <hr class="dropdown-divider">

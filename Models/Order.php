@@ -2,13 +2,14 @@
 require_once '../conn.php';
 
 class Order
-{ 
+{
     public $productImg;
     public $productPrice;
     public $productQtt;
     public $encomendaId;
     public $userId;
     public $moradaId;
+    public $nomeMorada;
     public $morada;
     public $numero;
     public $complemento;
@@ -29,9 +30,9 @@ class Order
                                 inner join tbl_encomenda_products as ep on ep.encomendaId = e.encomendaId
                                 inner join tbl_products as p on ep.productId = p.productId
                                 where u.userId = ?;');
-        $stmt->execute([$userId]);       
-        
-        $result = $stmt->get_result();       
+        $stmt->execute([$userId]);
+
+        $result = $stmt->get_result();
 
         $orders = [];
         while ($row = $result->fetch_assoc()) {
@@ -42,7 +43,7 @@ class Order
             $order->encomendaId = $row['encomendaId'];
             $orders[] = $order;
         }
-        
+
         $stmt->close();
         closeConnection($conn);
         return $orders;
@@ -72,11 +73,19 @@ class Order
 
     public function save($conn)
     {
-        $stmt = $conn->prepare('INSERT INTO tbl_morada (morada, numero, complemento, freguesia, conselho, distrito, codigoPostal, pais) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
-        $stmt->bind_param('ssssssss', $this->morada, $this->numero, $this->complemento, $this->freguesia, $this->conselho, $this->distrito, $this->codigoPostal, $this->pais);
-        $stmt->execute();
-        $this->moradaId = $stmt->insert_id;
-        $stmt->close();
+        // Save address and assign to user
+        if (!$this->moradaId) {
+            $stmt = $conn->prepare('INSERT INTO tbl_morada (nomeMorada, morada, numeroMorada, complementoMorada, freguesiaMorada, conselhoMorada, distritoMorada, cpMorada, paisMorada) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
+            $stmt->bind_param('sssssssss', $this->nomeMorada, $this->morada, $this->numero, $this->complemento, $this->freguesia, $this->conselho, $this->distrito, $this->codigoPostal, $this->pais);
+            $stmt->execute();
+            $this->moradaId = $stmt->insert_id;
+            $stmt->close();
+
+            $stmt = $conn->prepare('INSERT INTO tbl_user_morada (userId, moradaId) VALUES (?, ?)');
+            $stmt->bind_param('ii', $this->userId, $this->moradaId);
+            $stmt->execute();
+            $stmt->close();
+        }
 
         $stmt = $conn->prepare('INSERT INTO tbl_encomendas (userId, moradaId) VALUES (?, ?)');
         $stmt->bind_param('ii', $this->userId, $this->moradaId);
@@ -84,9 +93,9 @@ class Order
         $this->encomendaId = $stmt->insert_id;
         $stmt->close();
 
-        foreach ($this->items as $item) {
+        foreach ($this->items as $id => $quantity) {
             $stmt = $conn->prepare('INSERT INTO tbl_encomenda_products (encomendaId, productId, productQtt) VALUES (?, ?, ?)');
-            $stmt->bind_param('iii', $this->encomendaId, $item, 1);
+            $stmt->bind_param('iii', $this->encomendaId, $id, $quantity);
             $stmt->execute();
             $stmt->close();
         }

@@ -9,7 +9,12 @@ if (!isset($_SESSION['cart'])) {
 }
 
 if (isset($_GET['addCart'])) {
-    $_SESSION['cart'][] = $_GET['addCart'];
+    $productId = $_GET['addCart'];
+    if (isset($_SESSION['cart'][$productId])) {
+        $_SESSION['cart'][$productId]++;
+    } else {
+        $_SESSION['cart'][$productId] = 1;
+    }
     header('Location: ' . $_SERVER['PHP_SELF']);
     exit();
 }

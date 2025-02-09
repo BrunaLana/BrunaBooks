@@ -41,7 +41,7 @@
                 <li class="opcoes__item"><a href="Views/livros.php" class="lista-menu__link">Livros</a></li>
                 <li class="opcoes__item"><a href="#" class="opcoes__link">Home</a></li>
                 <li class="opcoes__item"><a href="#" class="opcoes__link">Contato</a></li>
-               <ul class="menu-admin">
+                <ul class="menu-admin">
                     <input type="checkbox" id="opcoes-menu-admin" class="opcoes__botao__admin">
                     <label for="opcoes-menu-admin" class="opcoes__rotulo__admin">
                         <li class="opcoes__item__admin">ADMIN</li>
@@ -56,8 +56,13 @@
             <div class="containers">
                 <a href="./Views/carrinho.php" class="container__link">
                     <img src="Icons/Compras.svg" alt="Carrinho de compra" class="container__imagem">
-                    <?php if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0): ?>
-                        <span class="badge"><?= count($_SESSION['cart']) ?></span>
+                    <?php if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0):
+                        $itemCount = 0;
+                        foreach ($_SESSION['cart'] as $id => $quantity ) {
+                            $itemCount += $quantity;
+                        }
+                    ?>
+                        <span class="badge"><?= $itemCount ?></span>
                     <?php endif; ?>
                     <p class="container__texto">Minha sacola</p>
                 </a>

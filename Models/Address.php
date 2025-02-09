@@ -1,21 +1,36 @@
 <?php
-require_once '../Database/Database.php';
+//require_once '../Database/Database.php';
 
 class Address {
-    public $id;
-    public $userId;
+
+    public $moradaId;
+    public $nomeMorada;
     public $morada;
-    public $numero;
-    public $complemento;
-    public $freguesia;
-    public $conselho;
-    public $distrito;
-    public $codigoPostal;
-    public $pais;
+    public $numeroMorada;
+    public $complementoMorada;
+    public $freguesiaMorada;
+    public $conselhoMorada;
+    public $distritoMorada;
+    public $cpMorada;
+    public $paisMorada;
 
     public static function getAddressesByUserId($userId) {
         $conn = getDatabaseConnection();
-        $stmt = $conn->prepare('SELECT * FROM addresses WHERE userId = ?');
+        $stmt = $conn->prepare('select 
+                                    tm.moradaId,
+                                    tm.nomeMorada,
+                                    tm.morada,
+                                    tm.numeroMorada,
+                                    tm.complementoMorada,
+                                    tm.freguesiaMorada,
+                                    tm.conselhoMorada,
+                                    tm.distritoMorada,
+                                    tm.cpMorada,
+                                    tm.paisMorada 
+                                from  tbl_users as tu 
+                                inner join tbl_user_morada tum on tum.userId = tu.userId
+                                inner join tbl_morada as tm on  tum.moradaId = tm.moradaId
+                                where tu.userId = ?');
         $stmt->bind_param('i', $userId);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -23,16 +38,16 @@ class Address {
 
         while ($row = $result->fetch_assoc()) {
             $address = new Address();
-            $address->id = $row['id'];
-            $address->userId = $row['userId'];
+            $address->moradaId = $row['moradaId'];
+            $address->nomeMorada = $row['nomeMorada'];
             $address->morada = $row['morada'];
-            $address->numero = $row['numero'];
-            $address->complemento = $row['complemento'];
-            $address->freguesia = $row['freguesia'];
-            $address->conselho = $row['conselho'];
-            $address->distrito = $row['distrito'];
-            $address->codigoPostal = $row['codigoPostal'];
-            $address->pais = $row['pais'];
+            $address->numeroMorada = $row['numeroMorada'];
+            $address->complementoMorada = $row['complementoMorada'];
+            $address->freguesiaMorada = $row['freguesiaMorada'];
+            $address->conselhoMorada = $row['conselhoMorada'];
+            $address->distritoMorada = $row['distritoMorada'];
+            $address->cpMorada = $row['cpMorada'];
+            $address->paisMorada = $row['paisMorada'];
             $addresses[] = $address;
         }
 

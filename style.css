@@ -118,6 +118,14 @@ h2.titulo {
 
 @media screen and (min-width:1024px) {
 
+    select.texto-campos {
+        padding: 10px 20px 10px 10px !important;
+        margin-right: 350px !important;
+        width: 100%;
+        margin-bottom: 20px;
+        border-style: inset;
+        border-color: light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    }
     input.texto-campos {
         padding: 10px 20px 10px 10px !important;
         margin-right: 350px !important;
