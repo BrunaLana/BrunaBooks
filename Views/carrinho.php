@@ -1,6 +1,6 @@
 <?php
 require_once '../Controllers/CarrinhoController.php';
-require_once '../Models/Livro.php'; // Assuming you have a Livro model for book operations
+require_once '../Models/Livro.php'; 
 
 $alertMessage = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
