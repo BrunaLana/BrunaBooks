@@ -15,7 +15,31 @@ class Livro
     public static function getAllLivros()
     {
         $conn = getDatabaseConnection();
-        $stmt = $conn->prepare("SELECT * FROM tbl_products");
+        $stmt = $conn->prepare("SELECT * FROM tbl_products WHERE isActive = 1");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $livros = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $livro = new Livro();
+            $livro->productId = $row['productId'];
+            $livro->productName = $row['productName'];
+            $livro->productDesc = $row['productDesc'];
+            $livro->productImg = $row['productImg'];
+            $livro->productPrice = $row['productPrice'];
+            $livro->ProductQtt = $row['ProductQtt'];
+            $livro->isActive = $row['isActive'];
+            $livros[] = $livro;
+        }
+
+        $stmt->close();
+        closeConnection($conn);
+        return $livros;
+    }
+    public static function getAllLivrosAdmin()
+    {
+        $conn = getDatabaseConnection();
+        $stmt = $conn->prepare("SELECT * FROM tbl_products" );
         $stmt->execute();
         $result = $stmt->get_result();
         $livros = [];
@@ -66,7 +90,8 @@ class Livro
         return $livro;
     }
 
-    public static function find($productId) {
+    public static function find($productId)
+    {
         $conn = getDatabaseConnection();
         $stmt = $conn->prepare("SELECT * FROM tbl_products WHERE productId = ?");
         $stmt->bind_param("i", $productId);

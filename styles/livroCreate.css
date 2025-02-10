@@ -9,11 +9,14 @@ section.cadastro_Livros {
 }
 
 input#title,
-textarea#description {
+#edit_title,
+textarea#description,
+#edit_description {
     width: 90%;
 }
 
-textarea#description {
+textarea#description,
+#edit_description {
     height: 120px;
     padding: 10px 20px 10px 10px !important;
     margin-right: 350px !important;
@@ -52,11 +55,14 @@ section.listagemLivros {
     }
 
     input#title,
-    textarea#description {
+    #edit_title,
+    textarea#description,
+    #edit_description {
         width: 100%;
     }
 
-    textarea#description {
+    textarea#description,
+    #edit_description {
         height: 120px;
         padding: 10px 20px 10px 10px !important;
         margin-right: 350px !important;

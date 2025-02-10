@@ -26,7 +26,6 @@
 
 <body>
     <?php
-    require_once '../Helpers/SessionHelper.php';
     include '../Includes/confirmDialog.php'; ?>
     <header class="cabecalho">
         <div class="containers">
@@ -73,7 +72,7 @@
                     foreach ($_SESSION['cart'] as $id => $quantity) {
                         $itemCount += $quantity;
                     }
-                    ?>
+                ?>
                     <span class="badge"><?= $itemCount ?></span>
                 <?php endif; ?>
                 <p class="container__texto mb-0">Minha sacola</p>
@@ -84,7 +83,7 @@
                     <img src="../Icons/Usuário.svg" alt="Meu perfil" class="container__imagem">
                     <div>
                         <p class="container__texto mb-0">Meu perfil</p>
-                        <?php if (SessionHelper::isLoggedIn()): ?>
+                        <?php if (isset($_SESSION['user_id'])): ?>
                             <span class="boasVindas">Olá, <?= htmlspecialchars($_SESSION['username']); ?></span>
                         <?php endif; ?>
                     </div>
@@ -103,4 +102,4 @@
             </div>
         </div>
     </header>
-    <hr class="m-0"/>
+    <hr class="m-0" />
