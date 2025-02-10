@@ -13,12 +13,13 @@ class UserController
             $email = $_POST['email'];
             $userNickName = $_POST['userNickName'];
             $senha = password_hash($_POST['senha'], PASSWORD_BCRYPT);
+            $dataNasc = $_POST['dataNascimento'];
 
             $conn = getDatabaseConnection();
 
-            $stmt = $conn->prepare("INSERT INTO tbl_users (userNome, userNickName, userEmail, userSenha, userRole, userApelido) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO tbl_users (userNome, userNickName,userDataNasc, userEmail, userSenha, userRole, userApelido) VALUES (?,?, ?, ?, ?, ?, ?)");
             $userRole = 'user'; // Default role
-            $stmt->bind_param("ssssss", $nome, $userNickName, $email, $senha, $userRole, $apelido);
+            $stmt->bind_param("sssssss", $nome, $userNickName, $dataNasc, $email, $senha, $userRole, $apelido);
 
             if ($stmt->execute()) {
                 // Registration successful

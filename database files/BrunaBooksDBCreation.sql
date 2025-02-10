@@ -47,7 +47,7 @@ Create table tbl_users(
     userNickName varchar(50) not null,
 	userSenha varchar(500) not null,
     userEmail varchar(50) not null,
-    userDataNasc date null,
+    userDataNasc datetime not null,
 	userRole varchar(5) not null
 );
 

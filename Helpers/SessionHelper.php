@@ -10,7 +10,7 @@ class SessionHelper {
     public static function login($user) {
         self::startSession();
         $_SESSION['user_id'] = $user->id;
-        $_SESSION['username'] = $user->usernome;
+        $_SESSION['username'] = $user->username;
         $_SESSION['userrole'] = $user->userrole;
     }
 

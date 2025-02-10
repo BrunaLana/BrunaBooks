@@ -2,6 +2,7 @@
 
 require_once '../conn.php';
 require_once '../Models/Livro.php';
+require_once '../Helpers/SessionHelper.php';
 
 SessionHelper::startSession();
 class LivrosController
@@ -11,14 +12,15 @@ class LivrosController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $titulo = $_POST['titulo'];
             $descricao = $_POST["descricao"];
-            $preco = $_POST["preco"];
+            $preco = floatval($_POST["preco"]);
             $imagem = base64_encode(file_get_contents($_FILES["imagem"]['tmp_name']));
+            $isActive = true;
+            $productQtt = $_POST["quantidade"];
 
             $conn = getDatabaseConnection();
 
-            $stmt = $conn->prepare("INSERT INTO tbl_products (productName, productDesc, productImg,productPrice,isActive)  VALUES (?, ?, ?, ?, ?)");
-            $userRole = 'user'; // Default role
-            $stmt->bind_param("sssss", $titulo, $descricao, $imagem, $preco, true);
+            $stmt = $conn->prepare("INSERT INTO tbl_products (productName, productDesc, productImg,productPrice,isActive, productQtt)  VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssdi", $titulo, $descricao, $imagem, $preco, $isActive, $productQtt);
 
             if ($stmt->execute()) {
                 // Registration successful

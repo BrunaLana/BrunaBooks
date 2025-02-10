@@ -79,7 +79,11 @@ body {
     overflow: hidden;
     white-space: nowrap;
 }
-
+.card-title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
 
 .label-warning[href],
 .badge-warning[href] {

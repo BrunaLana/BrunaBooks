@@ -19,6 +19,11 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="registroTexto" for="dataNascimento">Data de Nascimento</label>
+                    <input type="date" class="form-control texto-campos" id="dataNascimento" name="dataNascimento" required>
+                </div>
+
+                <div class="form-group">
                     <label class="registroTexto" for="email">Email</label>
                     <input type="email" class=" form-control texto-campos" id="email" name="email" required>
                 </div>

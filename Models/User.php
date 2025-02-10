@@ -59,7 +59,7 @@ class User
             $user->email = $row['userEmail'];
             $user->nickname = $row['userNickName'];
             $user->apelido = $row['userApelido'];
-            $user->dataNasc = $row['userDataNasc'];
+            $user->dataNasc = date('d/m/Y', strtotime($row['userDataNasc']));
             $users[] = $user;
         }
 
@@ -91,7 +91,7 @@ class User
         $user->email = $user_data['userEmail'];
         $user->nickname = $user_data['userNickName'];
         $user->apelido = $user_data['userApelido'];
-        $user->dataNasc = $user_data['userDataNasc'];
+        $user->dataNasc = date('Y-m-d', strtotime($user_data['userDataNasc']));
 
         $stmt->close();
         closeConnection($conn);

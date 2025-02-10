@@ -40,6 +40,11 @@ $livros = Livro::getAllLivros();
                 <label for="imagem">Imagem</label>
                 <input type="file" class="form-control texto-campos" id="imagem" name="imagem" accept="image/*" required>
             </div>
+            
+            <div class="form-group">
+                <label for="quantity">Quantidade</label>
+                <input type="number" class="form-control texto-campos" id="quantity" name="quantidade" required>
+            </div>
             <button type="submit" class="registroBotao btn botao-confirm">Salvar</button>
         </form>
     </section>
