@@ -30,9 +30,9 @@ $orders = Order::getAllOrders();
             <table class="table table-striped">
             <thead>
             <tr>
-            <th>Pedido ID</th>
-            <th>Data da Encomenda</th>
-            <th>Status da Encomenda</th>
+            <th># Pedido</th>
+            <th>Data</th>
+            <th>Status</th>
             <th>Itens</th>
             <th>Total</th>
             <th>Ações</th>
@@ -50,7 +50,7 @@ $orders = Order::getAllOrders();
                 <form action="../Controllers/OrderController.php" method="post">
                 <input type="hidden" name="order_id" value="<?= htmlspecialchars($order->encomendaId) ?>">
                 <div class="d-flex">
-                    <select name="status" class="form-control texto-campos mr-2" style="max-width: 150px;margin-right:  10px !important;">
+                    <select name="status" class="form-control texto-campos mr-2" style="margin-right:  10px !important;">
                         <option value="1" <?= $order->statusId == '1' ? 'selected' : '' ?>>Aguardando envio</option>
                         <option value="2" <?= $order->statusId == '2' ? 'selected' : '' ?>>Enviado</option>
                         <option value="3" <?= $order->statusId == '3' ? 'selected' : '' ?>>Cancelado</option>

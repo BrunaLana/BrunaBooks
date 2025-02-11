@@ -24,7 +24,7 @@ if (isset($_GET['edit_id'])) {
 ?>
     <h2 class="titulo">Editar Livro</h2>
     <section class="cadastro_Livros">
-        <form class="form_livro_create" action="../controllers/LivrosController.php" method="POST" enctype="multipart/form-data" style="width: 30%;">
+        <form class="form_livro_create width-adjust" action="../controllers/LivrosController.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?php echo $livroToEdit->productId; ?>">
             <input type="hidden" name="action" value="update">
             <div class="form-group">
@@ -63,7 +63,7 @@ if (isset($_GET['edit_id'])) {
 <?php } else {?>
 <h2 class="titulo">Cadastro de Livro</h2>
 <section class="cadastro_Livros">
-    <form class="form_livro_create" action="../controllers/LivrosController.php" method="POST" enctype="multipart/form-data" style="width: 30%;">
+    <form class="form_livro_create" action="../controllers/LivrosController.php" method="POST" enctype="multipart/form-data" >
         <div class="form-group">
             <label for="title">Título</label>
             <input type="text" class="form-control texto-campos" id="title" name="titulo" required>

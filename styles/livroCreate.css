@@ -9,14 +9,25 @@ section.cadastro_Livros {
 }
 
 input#title,
-#edit_title,
-textarea#description,
-#edit_description {
+textarea#description{
     width: 90%;
 }
 
-textarea#description,
-#edit_description {
+input#edit_title,
+textarea#edit_description {
+    width: 90%;
+}
+
+textarea#description {
+    height: 120px;
+    padding: 10px 20px 10px 10px !important;
+    margin-right: 350px !important;
+    margin-bottom: 20px !important;
+    border-style: inset;
+    border-color: light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+}
+
+textarea#edit_description {
     height: 120px;
     padding: 10px 20px 10px 10px !important;
     margin-right: 350px !important;
@@ -34,12 +45,13 @@ input.botao_create {
     margin-bottom: 20px;
 }
 
-section.listagemLivros {
-    display: none;
-}
+
 
 @media screen and (min-width:1024px) {
 
+    .width-adjust{
+        width: 30%;
+    }
     section.cadastro_Livros {
         margin-left: 0px;
         display: flex;
@@ -54,15 +66,26 @@ section.listagemLivros {
         border-radius: 30px;
     }
 
-    input#title,
-    #edit_title,
-    textarea#description,
-    #edit_description {
+    input#title,    
+    textarea#description {
         width: 100%;
     }
 
-    textarea#description,
-    #edit_description {
+    input#edit_title,
+    textarea#edit_description {
+        width: 100%;
+    }
+
+    textarea#description{
+        height: 120px;
+        padding: 10px 20px 10px 10px !important;
+        margin-right: 350px !important;
+        margin-bottom: 20px !important;
+        border-style: inset;
+        border-color: light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    }
+
+    textarea#edit_description {
         height: 120px;
         padding: 10px 20px 10px 10px !important;
         margin-right: 350px !important;
@@ -74,6 +97,7 @@ section.listagemLivros {
 
 @media screen and (min-width:1728px) {
 
+    
     section.listagemLivros {
         display: block;
         width: 50%;

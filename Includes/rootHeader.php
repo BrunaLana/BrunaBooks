@@ -31,12 +31,12 @@
                 <span class="cabecalho__menu-hamburguer container__imagem"></span>
             </label>
             <ul class="lista-menu">
-                <li class="lista-menu__titulo">Livros</li>
+                <li class="lista-menu__item"><a href="Views/livros.php" class="lista-menu__link">Livros</a></li>
                 <li class="lista-menu__item"><a href="#" class="lista-menu__link">Home</a></li>
-                <li class="lista-menu__item"><a href="#" class="lista-menu__link">Todos</a></li>
-                <li class="lista-menu__item"><a href="#" class="lista-menu__link">Programação</a></li>
-                <li class="lista-menu__item"><a href="#" class="lista-menu__link">Redes</a></li>
-                <li class="lista-menu__item"><a href="#" class="lista-menu__link">Design & UX</a></li>
+                <li class="lista-menu__titulo"><u>Admin</u></li>
+                <li class="lista-menu__item"><a href="views/livroCreate.php" class="lista-menu__link">Cadastro de Produto</a></li>
+                <li class="lista-menu__item"><a href="views/userManagement.php" class="lista-menu__link">Gerir Usuário</a></li>
+                <li class="lista-menu__item"><a href="Views/gestaoPedidos.php" class="lista-menu__link">Gerir Pedidos</a></li>
             </ul>
             <a href="#" class="container__link">
                 <img src="Icons/Logo.svg" alt="logo BrunaBooks" class="container__imagem">
@@ -52,12 +52,9 @@
                     <li class="opcoes__item__admin pt-2">ADMIN</li>
                 </label>
                 <ul class="lista-menu-admin" style="z-index:9999;">
-                    <li class="lista-menu__item"><a href="views/livroCreate.php" class="lista-menu__link">Cadastro de
-                            Produto</a></li>
-                    <li class="lista-menu__item"><a href="views/userManagement.php" class="lista-menu__link">Gerir
-                            Usuário</a></li>
-                    <li class="lista-menu__item"><a href="views/gestaoPedidos.php" class="lista-menu__link">Gerir
-                            Pedidos</a></li>
+                    <li class="lista-menu__item"><a href="views/livroCreate.php" class="lista-menu__link">Cadastro de Produto</a></li>
+                    <li class="lista-menu__item"><a href="views/userManagement.php" class="lista-menu__link">Gerir Usuário</a></li>
+                    <li class="lista-menu__item"><a href="views/gestaoPedidos.php" class="lista-menu__link">Gerir Pedidos</a></li>
                 </ul>
             </ul>
         </ul>

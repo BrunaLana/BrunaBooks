@@ -114,223 +114,20 @@
     font-size: 12px;
 }
 
-@media screen and (min-width: 1024px) and (max-width: 1080px) {
-    .container__texto {
-        display: block;
-    }
-    .boasVindas {
-        display: block;
-    }
-    .container__link {
-        display: flex !important;
-        align-items: center !important;
-        text-decoration: none !important;
-        color: var(--preto) !important;
-    }
-
-    .container__titulo,
-    .container__titulo--negrito {
-        font-family: var("fonte-secundario");
-        font-size: 30px;
-    }
-
-    .container__titulo {
-        font-weight: 400;
-        display: block;
-    }
-
-    .container__titulo--negrito {
-        font-weight: 700;
-    }
-
-    .badge {
-        display: block !important;
-        right: 10%;
-    }
-}
-
-@media screen and (min-width: 1081px) and (max-width: 1300px) {
-    .container__texto {
-        display: block;
-    }
-    .boasVindas {
-        display: block;
-    }
-    .container__link {
-        display: flex !important;
-        align-items: center !important;
-        text-decoration: none !important;
-        color: var(--preto) !important;
-    }
-
-    .container__titulo,
-    .container__titulo--negrito {
-        font-family: var("fonte-secundario");
-        font-size: 30px;
-    }
-
-    .container__titulo {
-        font-weight: 400;
-        display: block;
-    }
-
-    .container__titulo--negrito {
-        font-weight: 700;
-    }
-
-    .badge {
-        display: block !important;
-        right: 9%;
-    }
-}
-
-@media screen and (min-width: 1301px) and (max-width: 1450px) {
-    .container__texto {
-        display: block;
-    }
-    .boasVindas {
-        display: block;
-    }
-    .container__link {
-        display: flex !important;
-        align-items: center !important;
-        text-decoration: none !important;
-        color: var(--preto) !important;
-    }
-
-    .container__titulo,
-    .container__titulo--negrito {
-        font-family: var("fonte-secundario");
-        font-size: 30px;
-    }
-
-    .container__titulo {
-        font-weight: 400;
-        display: block;
-    }
-
-    .container__titulo--negrito {
-        font-weight: 700;
-    }
-
-    .badge {
-        display: block !important;
-        right: 8%;
-    }
-}
-
-@media screen and (min-width: 1451px) and (max-width: 1726px) {
-    .container__texto {
-        display: block;
-    }
-    .boasVindas {
-        display: block;
-    }
-    .container__link {
-        display: flex !important;
-        align-items: center !important;
-        text-decoration: none !important;
-        color: var(--preto) !important;
-    }
-
-    .container__titulo,
-    .container__titulo--negrito {
-        font-family: var("fonte-secundario");
-        font-size: 30px;
-    }
-
-    .container__titulo {
-        font-weight: 400;
-        display: block;
-    }
-
-    .container__titulo--negrito {
-        font-weight: 700;
-    }
-
-    .badge {
-        display: block !important;
-        right: 6%;
-    }
-}
-
-@media screen and (min-width: 1728px) and (max-width: 2044px) {
-    .container__texto {
-        display: block;
-    }
-    .boasVindas {
-        display: block;
-    }
-    .container__link {
-        display: flex !important;
-        align-items: center !important;
-        text-decoration: none !important;
-        color: var(--preto) !important;
-    }
-
-    .container__titulo,
-    .container__titulo--negrito {
-        font-family: var("fonte-secundario");
-        font-size: 30px;
-    }
-
-    .container__titulo {
-        font-weight: 400;
-        display: block;
-    }
-
-    .container__titulo--negrito {
-        font-weight: 700;
-    }
-
-    .badge {
-        display: block !important;
-        right: 17%;
-    }
-}
-
-@media screen and (min-width: 2045px) {
-    .container__texto {
-        display: block;
-    }
-    .boasVindas {
-        display: block;
-    }
-    .container__link {
-        display: flex !important;
-        align-items: center !important;
-        text-decoration: none !important;
-        color: var(--preto) !important;
-    }
-
-    .container__titulo,
-    .container__titulo--negrito {
-        font-family: var("fonte-secundario");
-        font-size: 30px;
-    }
-
-    .container__titulo {
-        font-weight: 400;
-        display: block;
-    }
-
-    .container__titulo--negrito {
-        font-weight: 700;
-    }
-
-    .badge {
-        display: block !important;
-        right: 12%;
-    }
-}
-
 @media screen and (min-width:1024px) {
+    .cabecalho {
+        height: 5em;
+        padding: 0 2em;
+    }
+
     .container__texto {
         display: block;
     }
+
     .boasVindas {
         display: block;
     }
+
     .container__link {
         display: flex !important;
         align-items: center !important;
@@ -394,7 +191,9 @@
         padding: 2em 1em;
     }
 
-
+    .boasVindas {
+        display: block;
+    }
 
     .opcoes__botao__admin {
         display: none;
@@ -413,14 +212,11 @@
     .opcoes__item__admin {
         padding: 0 1em !important;
         text-transform: uppercase;
-
     }
 
     .opcoes__item__admin {
         padding: 2em 1em;
     }
-
-
 
     .lista-menu__item:hover {
         background: var(--azul-degrade);
@@ -434,18 +230,43 @@
 
 }
 
-@media screen and (min-width:1728px) {
-    .container__link {
-        display: flex !important;
-        align-items: center !important;
-        text-decoration: none !important;
-        color: var(--preto) !important;
+@media screen and (min-width: 1024px) and (max-width: 1080px) {
+
+
+    .badge {
+        display: block !important;
+        right: 10%;
     }
 
-    .cabecalho {
-        height: 5em;
-        padding: 0 2em;
+
+}
+
+@media screen and (min-width: 1081px) and (max-width: 1300px) {
+
+    .badge {
+        display: block !important;
+        right: 9%;
     }
+}
+
+@media screen and (min-width: 1301px) and (max-width: 1450px) {
+
+
+    .badge {
+        display: block !important;
+        right: 8%;
+    }
+}
+
+@media screen and (min-width: 1451px) and (max-width: 1726px) {
+
+    .badge {
+        display: block !important;
+        right: 6%;
+    }
+}
+
+@media screen and (min-width:1728px) {
 
     .opcoes {
         margin-right: auto;
@@ -457,5 +278,22 @@
 
     .boasVindas {
         display: block;
+    }
+}
+
+@media screen and (min-width: 1728px) and (max-width: 2044px) {
+
+
+    .badge {
+        display: block !important;
+        right: 17%;
+    }
+}
+
+@media screen and (min-width: 2045px) {
+
+    .badge {
+        display: block !important;
+        right: 12%;
     }
 }
