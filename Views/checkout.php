@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="form-group">
                     <label class="registroTexto" for="addressSelect">Nova Morada</label>
                     <select class="form-control texto-campos" id="addressSelect" onchange="fillAddressFields(this.value)">
-                        <option value="">Selecione uma morada</option>
+                        <option value="">Selecione uma morada ou cadastre uma nova</option>
                         <?php foreach ($addresses as $address): ?>
                             <option value="<?= htmlspecialchars(json_encode($address)) ?>"><?= htmlspecialchars($address->nomeMorada) ?></option>
                         <?php endforeach; ?>
@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php endif; ?>                          
                 <input type="hidden" id="moradaId" name="moradaId" value="<?= htmlspecialchars($moradaId) ?>">
                 <div class="form-group">
-                    <label class="registroTexto" for="nomeMorada">Dê um nome para esta morada</label>
+                    <label class="registroTexto" for="nomeMorada">Dê um nome para esta morada (casa, trabalho...)</label>
                     <input type="text" class="form-control texto-campos" name="nomeMorada" id="nomeMorada" value="<?= htmlspecialchars($nomeMorada) ?>" required>
                 </div>
 

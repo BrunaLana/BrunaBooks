@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         foreach ($items as $item):
         ?>
             <div class="carrinho-item">
-                <img src="data:image/jpeg;base64,<?= $item->productImg ?>" alt="Imagem do produto">
+                <img src="data:image/jpeg;base64,<?= $item->productImg ?>" alt="Imagem do produto" width="99%">
                 <div class="item-info">
                     <h5><?= htmlspecialchars($item->productName) ?></h5>
                 </div>

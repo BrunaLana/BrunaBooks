@@ -10,7 +10,11 @@ h1.carrinhoTitulo{
     padding: 0.7em !important;
 }
 
+
+
 @media screen and (min-width:1024px) {
+    
+   
     .carrinho-container {
         padding: 0% 15%;
         max-width: 100%;
